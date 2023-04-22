@@ -10,3 +10,9 @@ func (r Grupos) Cypher(data data.Data) string {
 
 	return "Grupos Encripted message : " + data.Message
 }
+
+func (r Grupos) Decrypt(data data.Data) string {
+	//todo implementar aqui la logica para descifrar!!!
+
+	return "Grupos Decrypted message : " + data.Message
+}

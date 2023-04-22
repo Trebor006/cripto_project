@@ -10,3 +10,9 @@ func (r Series) Cypher(data data.Data) string {
 
 	return "Series Encripted message : " + data.Message
 }
+
+func (r Series) Decrypt(data data.Data) string {
+	//todo implementar aqui la logica para descifrar!!!
+
+	return "Series Decrypted message : " + data.Message
+}

@@ -10,3 +10,9 @@ func (r TransformacionAfin) Cypher(data data.Data) string {
 
 	return "TransformacionAfin Encripted message : " + data.Message
 }
+
+func (r TransformacionAfin) Decrypt(data data.Data) string {
+	//todo implementar aqui la logica para descifrar!!!
+
+	return "TransformacionAfin Encripted message : " + data.Message
+}

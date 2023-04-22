@@ -10,3 +10,9 @@ func (r ZigZag) Cypher(data data.Data) string {
 
 	return "ZigZag Encripted message : " + data.Message
 }
+
+func (r ZigZag) Decrypt(data data.Data) string {
+	//todo implementar aqui la logica para descifrar!!!
+
+	return "ZigZag Decrypted message : " + data.Message
+}

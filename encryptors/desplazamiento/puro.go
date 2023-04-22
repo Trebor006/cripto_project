@@ -10,3 +10,9 @@ func (r Puro) Cypher(data data.Data) string {
 
 	return "Puro Encripted message : " + data.Message
 }
+
+func (r Puro) Decrypt(data data.Data) string {
+	//todo implementar aqui la logica para descifrar!!!
+
+	return "Puro Encripted message : " + data.Message
+}

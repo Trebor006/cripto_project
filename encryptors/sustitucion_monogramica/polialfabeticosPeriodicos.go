@@ -10,3 +10,9 @@ func (r PolialfabeticosPeriodicos) Cypher(data data.Data) string {
 
 	return "PolialfabeticosPeriodicos Encripted message : " + data.Message
 }
+
+func (r PolialfabeticosPeriodicos) Decrypt(data data.Data) string {
+	//todo implementar aqui la logica para descifrar!!!
+
+	return "PolialfabeticosPeriodicos Encripted message : " + data.Message
+}
