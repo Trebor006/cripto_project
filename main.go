@@ -1,13 +1,5 @@
 package main
 
-import (
-	"criptograms/main/data"
-	"criptograms/main/encryptors"
-	"criptograms/main/encryptors/sustitucion_monogramica"
-	"criptograms/main/util"
-	"fmt"
-)
-
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
@@ -93,14 +85,14 @@ func main() {
 	////var homofonoOrdenMayor encryptors.EncryptorInterface = homofonos.HomofonoOrdenMayor{}
 	////fmt.Println(homofonoOrdenMayor.Cypher(dataToCypher))
 	//
-	var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "HOLA AMIGOS", Clave: "CIFRA"}
-	//var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "eres como una mariposa vuelas y te posas", Clave: "MANA"}
-	var poliAlfabeticosPeriodicos encryptors.EncryptorInterface = sustitucion_monogramica.PolialfabeticosPeriodicos{}
-	var textoCifradoVigenere = poliAlfabeticosPeriodicos.Cypher(dataToCypherByPolialfabeticoPeriodico)
-	fmt.Println(util.Format(textoCifradoVigenere))
-
-	var dataToDecryptByPolialfabeticoPeriodico = data.Data{Message: textoCifradoVigenere, Clave: "CIFRA"}
-	var textoDesencriptadoVigenere = poliAlfabeticosPeriodicos.Decrypt(dataToDecryptByPolialfabeticoPeriodico)
-	fmt.Println(util.Format(textoDesencriptadoVigenere))
+	//var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "HOLA AMIGOS", Clave: "CIFRA"}
+	////var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "eres como una mariposa vuelas y te posas", Clave: "MANA"}
+	//var poliAlfabeticosPeriodicos encryptors.EncryptorInterface = GetEncryptor(POLIALFABETICO_PERIODICO)
+	//var textoCifradoVigenere = poliAlfabeticosPeriodicos.Cypher(dataToCypherByPolialfabeticoPeriodico)
+	//fmt.Println(util.Format(textoCifradoVigenere))
+	//
+	//var dataToDecryptByPolialfabeticoPeriodico = data.Data{Message: textoCifradoVigenere, Clave: "CIFRA"}
+	//var textoDesencriptadoVigenere = poliAlfabeticosPeriodicos.Decrypt(dataToDecryptByPolialfabeticoPeriodico)
+	//fmt.Println(util.Format(textoDesencriptadoVigenere))
 
 }
