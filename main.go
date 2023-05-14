@@ -1,13 +1,5 @@
 package main
 
-import (
-	"criptograms/main/data"
-	"criptograms/main/encryptors"
-	"criptograms/main/encryptors/trasposicion"
-	"criptograms/main/util"
-	"fmt"
-)
-
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
@@ -53,16 +45,16 @@ func main() {
 	////fmt.Println(trasposicionFilas.Cypher(dataToCypher))
 	//
 	//var dataToCypherByZigZag = data.Data{Message: "VISTEME DESPACIO QUE TENGO PRISA", NroRails: 4}
-	var dataToCypherByZigZag = data.Data{Message: "EL SISTEMA RAIL FENCE SE UTILIZO EN LA GUERRA DE SECESION", NroRails: 5}
-	////var dataToCypherByZigZag = data.Data{Message: "HOLA MUNDO", NroRails: 4}
-	var trasposicionZigZag encryptors.EncryptorInterface = trasposicion.ZigZag{}
-	var textoCifradoZigZag = trasposicionZigZag.Cypher(dataToCypherByZigZag)
-	fmt.Println(util.Format(textoCifradoZigZag))
-
-	var dataToDecryptByZigZag = data.Data{EncryptedMessage: textoCifradoZigZag, NroRails: 5}
-	//var dataToDecryptByZigZag = data.Data{EncryptedMessage: "EERCO TNRLU ASDVE VEONE SUAOB INUZL TBZTR IVITR YSALR CILUC AYSAZ AALOG NRRTB ATHVL REONE SUTLE EAOEA ROT", NroRails: 5}
-	var textoDescifradoZigZag = trasposicionZigZag.Decrypt(dataToDecryptByZigZag)
-	fmt.Println(util.Format(textoDescifradoZigZag))
+	//var dataToCypherByZigZag = data.Data{Message: "EL SISTEMA RAIL FENCE SE UTILIZO EN LA GUERRA DE SECESION", NroRails: 5}
+	//////var dataToCypherByZigZag = data.Data{Message: "HOLA MUNDO", NroRails: 4}
+	//var trasposicionZigZag encryptors.EncryptorInterface = trasposicion.ZigZag{}
+	//var textoCifradoZigZag = trasposicionZigZag.Cypher(dataToCypherByZigZag)
+	//fmt.Println(util.Format(textoCifradoZigZag))
+	//
+	//var dataToDecryptByZigZag = data.Data{EncryptedMessage: textoCifradoZigZag, NroRails: 5}
+	////var dataToDecryptByZigZag = data.Data{EncryptedMessage: "EERCO TNRLU ASDVE VEONE SUAOB INUZL TBZTR IVITR YSALR CILUC AYSAZ AALOG NRRTB ATHVL REONE SUTLE EAOEA ROT", NroRails: 5}
+	//var textoDescifradoZigZag = trasposicionZigZag.Decrypt(dataToDecryptByZigZag)
+	//fmt.Println(util.Format(textoDescifradoZigZag))
 
 	////var decimacionPura encryptors.EncryptorInterface = monoalfabetica.DecimacionPura{}
 	////fmt.Println(decimacionPura.Cypher(dataToCypher))
