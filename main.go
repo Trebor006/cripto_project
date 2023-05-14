@@ -25,35 +25,42 @@ func main() {
 	//fmt.Println(trasposicionSeries.Cypher(dataToCypher))
 
 	//todo Cifrado por Columnas
-	//var dataToCypherByColumns = data.Data{Message: "ANDE YO CALIENTE Y RIASE LA GENTE", NroColumns: 8}
-	//var formatter = util.Formatter{}
-	//var trasposicionColumnas encryptors.EncryptorInterface = trasposicion.Columnas{}
-	//var textoCifrado = trasposicionColumnas.Cypher(dataToCypherByColumns)
-	//fmt.Println(formatter.Format(textoCifrado))
+	var dataToCypherByColumns = data.Data{Message: "ANDE YO CALIENTE Y RIASE LA GENTE", NroColumns: 8}
+	//var dataToCypherByColumns = data.Data{Message: "TRANSPOSICION POR COLUMNAS", NroColumns: 5}
+	var trasposicionColumnas1 encryptors.EncryptorInterface = trasposicion.Columnas{}
+	var textoCifrado1 = trasposicionColumnas1.Cypher(dataToCypherByColumns)
+	fmt.Println(util.Format(textoCifrado1))
 
-	//dataToCypherByColumns = data.Data{EncryptedMessage: textoCifrado, NroColumns: 8}
-	//var textoDescifrado = trasposicionColumnas.Decrypt(dataToCypherByColumns)
-	//fmt.Println(textoDescifrado)
+	dataToCypherByColumns = data.Data{EncryptedMessage: textoCifrado1, NroColumns: 8}
+	var textoDescifrado = trasposicionColumnas1.Decrypt(dataToCypherByColumns)
+	fmt.Println(util.Format(textoDescifrado))
 
 	var dataToCypherByColumnsAndClave = data.Data{Message: "TRANSPOSICION POR COLUMNAS", Clave: "MARIO"}
-	var formatter = util.Formatter{}
 	var trasposicionColumnas encryptors.EncryptorInterface = trasposicion.Columnas{}
-	var textoCifrado = trasposicionColumnas.Cypher(dataToCypherByColumnsAndClave)
-	fmt.Println(formatter.Format(textoCifrado))
+	var textoCifradoPorColumnasConClave = trasposicionColumnas.Cypher(dataToCypherByColumnsAndClave)
+	fmt.Println(util.Format(textoCifradoPorColumnasConClave))
 
-	var dataToCypherByColumnsWithKey = data.Data{EncryptedMessage: textoCifrado, Clave: "MARIO"}
-	var textoDescifrado = trasposicionColumnas.Decrypt(dataToCypherByColumnsWithKey)
-	fmt.Println(textoDescifrado)
+	var dataToCypherByColumnsWithKey = data.Data{EncryptedMessage: textoCifradoPorColumnasConClave, Clave: "MARIO"}
+	var textoDescifradoPorColumnasConClave = trasposicionColumnas.Decrypt(dataToCypherByColumnsWithKey)
+	fmt.Println(textoDescifradoPorColumnasConClave)
 
 	//todo Cifrado por Columnas
 
 	////var trasposicionFilas encryptors.EncryptorInterface = trasposicion.Filas{}
 	////fmt.Println(trasposicionFilas.Cypher(dataToCypher))
 	//
-	//var dataToCypherByZigZag = data.Data{Message: "message"}
-	//var trasposicionZigZag encryptors.EncryptorInterface = trasposicion.ZigZag{}
-	//fmt.Println(trasposicionZigZag.Cypher(dataToCypherByZigZag))
-	//
+	var dataToCypherByZigZag = data.Data{Message: "VISTEME DESPACIO QUE TENGO PRISA", NroRails: 4}
+	//var dataToCypherByZigZag = data.Data{Message: "EL SISTEMA RAIL FENCE SE UTILIZO EN LA GUERRA DE SECESION", NroRails: 5}
+	//var dataToCypherByZigZag = data.Data{Message: "HOLA MUNDO", NroRails: 4}
+	var trasposicionZigZag encryptors.EncryptorInterface = trasposicion.ZigZag{}
+	var textoCifradoZigZag = trasposicionZigZag.Cypher(dataToCypherByZigZag)
+	fmt.Println(util.Format(textoCifradoZigZag))
+
+	var dataToDecryptByZigZag = data.Data{EncryptedMessage: textoCifradoZigZag, NroRails: 4}
+	//var dataToDecryptByZigZag = data.Data{EncryptedMessage: "EERCO TNRLU ASDVE VEONE SUAOB INUZL TBZTR IVITR YSALR CILUC AYSAZ AALOG NRRTB ATHVL REONE SUTLE EAOEA ROT", NroRails: 5}
+	var textoDescifradoZigZag = trasposicionZigZag.Decrypt(dataToDecryptByZigZag)
+	fmt.Println(util.Format(textoDescifradoZigZag))
+
 	////var decimacionPura encryptors.EncryptorInterface = monoalfabetica.DecimacionPura{}
 	////fmt.Println(decimacionPura.Cypher(dataToCypher))
 	////

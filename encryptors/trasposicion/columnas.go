@@ -2,6 +2,8 @@ package trasposicion
 
 import (
 	"criptograms/main/data"
+	"criptograms/main/util"
+	"fmt"
 	"sort"
 	"strings"
 )
@@ -12,8 +14,10 @@ type Columnas struct {
 func (r Columnas) Cypher(data data.Data) string {
 	var encryptedMessage = ""
 	if data.NroColumns > 0 {
+		fmt.Println("Cypher por nro Columnas")
 		encryptedMessage = cypherByColumns(data)
 	} else if len(data.Clave) > 0 {
+		fmt.Println("Cypher por clave")
 		encryptedMessage = cypherByColumnsWithKey(data)
 	}
 
@@ -23,8 +27,10 @@ func (r Columnas) Cypher(data data.Data) string {
 func (r Columnas) Decrypt(data data.Data) string {
 	var decryptedMessage = ""
 	if data.NroColumns > 0 {
+		fmt.Println("Decrypt por nro Columnas")
 		decryptedMessage = decrypt(data)
 	} else if len(data.Clave) > 0 {
+		fmt.Println("Decrypt por clave")
 		decryptedMessage = decryptWithKey(data)
 	}
 
@@ -42,10 +48,7 @@ func cypherByColumns(data data.Data) string {
 	nroFilas := (len(message) + nroColumns - 1) / nroColumns
 
 	//declarando la matriz de n x m
-	matriz := make([][]rune, nroFilas)
-	for i := range matriz {
-		matriz[i] = make([]rune, nroColumns)
-	}
+	matriz := util.InicializarMatriz(nroFilas, nroColumns)
 
 	pos := 0
 	for i := 0; i < nroFilas; i++ {
@@ -58,6 +61,8 @@ func cypherByColumns(data data.Data) string {
 			pos++
 		}
 	}
+
+	util.ImprimirMatriz(matriz)
 
 	//obtener texto cifrado
 	var textoCifrado strings.Builder
@@ -88,10 +93,7 @@ func cypherByColumnsWithKey(data data.Data) string {
 	//fmt.Println("nroFilas :: " + strconv.Itoa(nroFilas))
 
 	//declarando la matriz de n x m
-	matriz := make([][]rune, nroFilas)
-	for i := range matriz {
-		matriz[i] = make([]rune, nroColumns)
-	}
+	matriz := util.InicializarMatriz(nroFilas, nroColumns)
 
 	pos := 0
 	for i := 0; i < nroFilas; i++ {
@@ -104,6 +106,8 @@ func cypherByColumnsWithKey(data data.Data) string {
 			pos++
 		}
 	}
+
+	util.ImprimirMatriz(matriz)
 
 	//obtener texto cifrado
 	claveOrdenada := ordenarCaracteres(clave)
@@ -145,9 +149,9 @@ func ordenarCaracteres(clave string) string {
 
 //--------------------------------------------------------------------------------------------------------------
 
-func decrypt(d data.Data) string {
-	var message = d.EncryptedMessage
-	var nroColumns = d.NroColumns
+func decrypt(data data.Data) string {
+	var message = data.EncryptedMessage
+	var nroColumns = data.NroColumns
 	//message = strings.ReplaceAll(message, " ", "")
 	if nroColumns <= 0 || nroColumns >= len(message) {
 		return "Error no se puede descifrar!"
@@ -156,10 +160,7 @@ func decrypt(d data.Data) string {
 	nroFilas := (len(message) + nroColumns - 1) / nroColumns
 
 	// Crear matriz de nroFilas x nroColumns y llenarla con caracteres de mensaje cifrado
-	matriz := make([][]rune, nroFilas)
-	for i := range matriz {
-		matriz[i] = make([]rune, nroColumns)
-	}
+	matriz := util.InicializarMatriz(nroFilas, nroColumns)
 
 	pos := 0
 	for i := 0; i < nroColumns; i++ {
@@ -169,13 +170,13 @@ func decrypt(d data.Data) string {
 		}
 	}
 
+	util.ImprimirMatriz(matriz)
+
 	// Obtener mensaje original descifrando la matriz
 	var mensajeOriginal strings.Builder
 	for i := 0; i < nroFilas; i++ {
 		for j := 0; j < nroColumns; j++ {
-			if matriz[i][j] != 'X' {
-				mensajeOriginal.WriteRune(matriz[i][j])
-			}
+			mensajeOriginal.WriteRune(matriz[i][j])
 		}
 	}
 
@@ -184,5 +185,15 @@ func decrypt(d data.Data) string {
 
 func decryptWithKey(data data.Data) string {
 	//todo PENDING
-	return "PENDING!!!!"
+	return "DECIFRADO POR COLUMNAS CON CLAVE PENDIENTE!!!!"
 }
+
+//func ordenarClave(clave string) string {
+//	claveSlice := strings.Split(clave, "")
+//	sort.Strings(claveSlice)
+//	return strings.Join(claveSlice, "")
+//}
+//
+//func obtenerPosicion(caracter string, texto string) int {
+//	return strings.Index(texto, caracter)
+//}
