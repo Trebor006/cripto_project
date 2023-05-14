@@ -1,9 +1,6 @@
 package util
 
-type Formatter struct {
-}
-
-func (f Formatter) Format(text string) string {
+func Format(text string) string {
 	textoFormateado := ""
 
 	for i, char := range text {
