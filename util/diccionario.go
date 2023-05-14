@@ -11,10 +11,7 @@ func InicializarDiccionario(longitudDiccionario int, r *rand.Rand) map[string][]
 	diccionario := map[string][]int{}
 
 	// Agregar elementos al slice
-	alfabeto := [27]string{
-		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-		"N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-	}
+	alfabeto := ObtenerAlfabetoEspanol()
 
 	if longitudDiccionario < len(alfabeto) {
 		fmt.Println("Error al cargar el diccionario, longitud minima no establecida")
