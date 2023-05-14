@@ -1,5 +1,13 @@
 package main
 
+import (
+	"criptograms/main/data"
+	"criptograms/main/encryptors"
+	"criptograms/main/encryptors/sustitucion/homofonos"
+	util "criptograms/main/util"
+	"fmt"
+)
+
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
@@ -65,10 +73,23 @@ func main() {
 	////var poliAlfabetica encryptors.EncryptorInterface = sustitucion.Polialfabetica{}
 	////fmt.Println(poliAlfabetica.Cypher(dataToCypher))
 	//
-	//var dataToCypherByPrimerOrden = data.Data{Message: "message"}
-	//var homofonoPrimerOrden encryptors.EncryptorInterface = homofonos.HomofonoPrimerOrden{}
-	//fmt.Println(homofonoPrimerOrden.Cypher(dataToCypherByPrimerOrden))
-	//
+
+	random := util.ObtenerGeneradorRandom()
+	diccionario := util.InicializarDiccionario(100, random)
+	var homofonoPrimerOrden encryptors.EncryptorInterface = homofonos.HomofonoPrimerOrden{}
+
+	var dataToCypherByPrimerOrden = data.Data{Message: "HOLA MUNDO QUE TAL QUE HACIENDO", Diccionario: diccionario, RandomGenerator: random}
+	var encryptedMessageByPrimerOrden = homofonoPrimerOrden.Cypher(dataToCypherByPrimerOrden)
+	var encryptedMessageByPrimerOrden2 = homofonoPrimerOrden.Cypher(dataToCypherByPrimerOrden)
+	fmt.Println(encryptedMessageByPrimerOrden)
+	fmt.Println(encryptedMessageByPrimerOrden2)
+
+	var dataToDecryptByPrimerOrden = data.Data{EncryptedMessage: encryptedMessageByPrimerOrden, Diccionario: diccionario, RandomGenerator: random}
+	fmt.Println(homofonoPrimerOrden.Decrypt(dataToDecryptByPrimerOrden))
+
+	var dataToDecryptByPrimerOrden2 = data.Data{EncryptedMessage: encryptedMessageByPrimerOrden2, Diccionario: diccionario, RandomGenerator: random}
+	fmt.Println(homofonoPrimerOrden.Decrypt(dataToDecryptByPrimerOrden2))
+
 	////var homofonoOrdenMayor encryptors.EncryptorInterface = homofonos.HomofonoOrdenMayor{}
 	////fmt.Println(homofonoOrdenMayor.Cypher(dataToCypher))
 	//
