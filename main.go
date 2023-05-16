@@ -30,7 +30,7 @@ func main() {
 	//fmt.Println(util.Format(textoDecifradoConClave))
 	//
 	cifradoGrupos := GetEncryptor(GRUPOS)
-	var CifradoGrupos = data.Data{Message: "UN SECRETO ALGO EXTRAÑO", Clave: "13572468"}
+	var CifradoGrupos = data.Data{Message: "UN SECRETO ALGO EXTRANO", Clave: "13572468"}
 	textoEncriptado := cifradoGrupos.Cypher(CifradoGrupos)
 	fmt.Println(util.Format(textoEncriptado))
 

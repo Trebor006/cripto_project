@@ -14,7 +14,6 @@ func (r Grupos) Cypher(data data.Data) string {
 }
 
 func (r Grupos) Decrypt(data data.Data) string {
-	//todo implementar aqui la logica para descifrar!!!
 	message := strings.ReplaceAll(strings.ToUpper(data.EncryptedMessage), " ", "")
 
 	return inverseTransposeCipher(message, data.Clave)
@@ -31,7 +30,7 @@ func transposeCipher(message, key string) string {
 	}
 
 	// Dividir el mensaje en grupos
-	groups := splitCadena(message, groupSize)
+	groups := generarGrupos(message, groupSize)
 
 	textoCifrado := ""
 	for _, grupo := range groups {
@@ -41,7 +40,7 @@ func transposeCipher(message, key string) string {
 	return textoCifrado
 }
 
-func splitCadena(cadena string, longitud int) []string {
+func generarGrupos(cadena string, longitud int) []string {
 	grupos := len(cadena) / longitud
 	resultado := make([]string, grupos)
 
@@ -77,29 +76,30 @@ func inverseTransposeCipher(ciphertext, key string) string {
 	// Obtener la longitud del grupo
 	groupSize := len(key)
 
-	// Calcular el número de grupos
-	numGroups := len(ciphertext) / groupSize
+	groups := generarGrupos(ciphertext, groupSize)
 
-	// Obtener la permutación inversa
-	inversePermutation := make([]int, groupSize)
-	for i, char := range key {
-		inversePermutation[char-'1'] = i + 1
+	textoCifrado := ""
+	for _, grupo := range groups {
+		textoCifrado += revertirReordenamiento(grupo, key)
 	}
 
-	// Obtener los grupos originales
-	groups := make([]string, numGroups)
-	for i := 0; i < numGroups; i++ {
-		groups[i] = ciphertext[i*groupSize : (i+1)*groupSize]
+	return textoCifrado
+}
+
+func revertirReordenamiento(texto, clave string) string {
+	if len(texto) != len(clave) {
+		return ""
 	}
 
-	// Permutar los grupos a su orden original
-	originalGroups := make([]string, numGroups)
-	for i, index := range inversePermutation {
-		originalGroups[index-1] = groups[i]
+	mapping := make([]rune, len(clave))
+	for i, c := range clave {
+		mapping[int(c-'1')] = rune(texto[i])
 	}
 
-	// Concatenar los grupos originales para obtener el mensaje descifrado
-	plaintext := strings.Join(originalGroups, "")
+	resultado := ""
+	for _, r := range mapping {
+		resultado += string(r)
+	}
 
-	return plaintext
+	return resultado
 }
