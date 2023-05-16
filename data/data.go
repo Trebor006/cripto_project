@@ -8,6 +8,7 @@ type Data struct {
 	EncryptedMessage string //En caso de que quieran desencriptar un mensaje tendrian que setearlo aqui
 	NroColumns       int    // Para Cifrado por Columnas
 	NroRails         int    // Para Cifrado por Rails o ZigZag
+	PosCifradoCesar  int    // Para Cifrado por Rails o ZigZag
 
 	Diccionario     map[string][]int //Para Cifrado de Primer Orden
 	RandomGenerator *rand.Rand

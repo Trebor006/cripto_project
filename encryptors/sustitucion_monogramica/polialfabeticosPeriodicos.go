@@ -37,8 +37,8 @@ func (r PolialfabeticosPeriodicos) Cypher(data data.Data) string {
 	textoCifrado := strings.Builder{}
 	for col := 0; col < nroColumnas; col++ {
 
-		posicionTexto := obtenerPosicion(alfabeto, string(matriz[0][col]))
-		posicionClave := obtenerPosicion(alfabeto, string(clave[posclave]))
+		posicionTexto := util.ObtenerPosicion(alfabeto, string(matriz[0][col]))
+		posicionClave := util.ObtenerPosicion(alfabeto, string(clave[posclave]))
 		nuevaPosicion := posicionTexto + posicionClave
 		valorNuevo := string(alfabeto[nuevaPosicion%len(alfabeto)][0])
 
@@ -56,15 +56,6 @@ func (r PolialfabeticosPeriodicos) Cypher(data data.Data) string {
 	fmt.Println(textoCifrado.String())
 
 	return textoCifrado.String()
-}
-
-func obtenerPosicion(alfabeto []string, r string) int {
-	for pos, char := range alfabeto {
-		if char == r {
-			return pos
-		}
-	}
-	return -1
 }
 
 func (r PolialfabeticosPeriodicos) Decrypt(data data.Data) string {
@@ -93,8 +84,8 @@ func (r PolialfabeticosPeriodicos) Decrypt(data data.Data) string {
 	textoCifrado := strings.Builder{}
 	for col := 0; col < nroColumnas; col++ {
 
-		posicionTexto := obtenerPosicion(alfabeto, string(matriz[0][col]))
-		posicionClave := obtenerPosicion(alfabeto, string(clave[posclave]))
+		posicionTexto := util.ObtenerPosicion(alfabeto, string(matriz[0][col]))
+		posicionClave := util.ObtenerPosicion(alfabeto, string(clave[posclave]))
 		nuevaPosicion := 0
 		if posicionClave > posicionTexto {
 			nuevaPosicion = posicionTexto + len(alfabeto) - posicionClave

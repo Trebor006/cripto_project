@@ -3,13 +3,26 @@ package main
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
-	//var dataToCypher = data.Data{Message: "message"}
-	//var cypherPuro encryptors.EncryptorInterface = desplazamiento.Puro{}
-	//fmt.Println(cypherPuro.Cypher(dataToCypher))
+	//var cypherPuro = GetEncryptor(PURO)
+	//var dataToCypher = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ"}
+	////var dataToCypher = data.Data{Message: "CESAR EL EMPERADOR HA SIDO ASESINADO"}
+	//textoCifrado := cypherPuro.Cypher(dataToCypher)
+	//fmt.Println(util.Format(textoCifrado))
 	//
-	//var cypherPuroConClave encryptors.EncryptorInterface = desplazamiento.PuroConClave{}
-	//fmt.Println(cypherPuroConClave.Cypher(dataToCypher))
+	//var dataToDecrypt = data.Data{EncryptedMessage: textoCifrado}
+	////var dataToDecrypt = data.Data{EncryptedMessage: "ABCD"}
+	//textoDecifrado := cypherPuro.Decrypt(dataToDecrypt)
+	//fmt.Println(util.Format(textoDecifrado))
+
+	//var cypherPuroConClave = GetEncryptor(PURO_CON_CLAVE)
+	//var dataToCypherConClave = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ", Clave: "MAGNMA", PosCifradoCesar: 3}
+	//textoCifradoConClave := cypherPuroConClave.Cypher(dataToCypherConClave)
+	//fmt.Println(util.Format(textoCifradoConClave))
 	//
+	//var dataToDecryptConClave = data.Data{EncryptedMessage: textoCifradoConClave, Clave: "MAGNMA", PosCifradoCesar: 3}
+	//textoDecifradoConClave := cypherPuroConClave.Decrypt(dataToDecryptConClave)
+	//fmt.Println(util.Format(textoDecifradoConClave))
+
 	//var trasposicionGrupos encryptors.EncryptorInterface = trasposicion.Grupos{}
 	//fmt.Println(trasposicionGrupos.Cypher(dataToCypher))
 	//
@@ -45,13 +58,13 @@ func main() {
 	////fmt.Println(trasposicionFilas.Cypher(dataToCypher))
 	//
 	//var dataToCypherByZigZag = data.Data{Message: "VISTEME DESPACIO QUE TENGO PRISA", NroRails: 4}
-	//var dataToCypherByZigZag = data.Data{Message: "EL SISTEMA RAIL FENCE SE UTILIZO EN LA GUERRA DE SECESION", NroRails: 5}
-	//////var dataToCypherByZigZag = data.Data{Message: "HOLA MUNDO", NroRails: 4}
+	////var dataToCypherByZigZag = data.Data{Message: "EL SISTEMA RAIL FENCE SE UTILIZO EN LA GUERRA DE SECESION", NroRails: 5}
+	////var dataToCypherByZigZag = data.Data{Message: "HOLA MUNDO", NroRails: 4}
 	//var trasposicionZigZag encryptors.EncryptorInterface = trasposicion.ZigZag{}
 	//var textoCifradoZigZag = trasposicionZigZag.Cypher(dataToCypherByZigZag)
 	//fmt.Println(util.Format(textoCifradoZigZag))
 	//
-	//var dataToDecryptByZigZag = data.Data{EncryptedMessage: textoCifradoZigZag, NroRails: 5}
+	//var dataToDecryptByZigZag = data.Data{EncryptedMessage: textoCifradoZigZag, NroRails: 4}
 	////var dataToDecryptByZigZag = data.Data{EncryptedMessage: "EERCO TNRLU ASDVE VEONE SUAOB INUZL TBZTR IVITR YSALR CILUC AYSAZ AALOG NRRTB ATHVL REONE SUTLE EAOEA ROT", NroRails: 5}
 	//var textoDescifradoZigZag = trasposicionZigZag.Decrypt(dataToDecryptByZigZag)
 	//fmt.Println(util.Format(textoDescifradoZigZag))

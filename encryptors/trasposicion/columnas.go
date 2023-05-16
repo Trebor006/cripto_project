@@ -81,7 +81,7 @@ func cypherByColumnsWithKey(data data.Data) string {
 	var message = data.Message
 	var clave = data.Clave
 
-	clave = removeDuplicates(clave)
+	clave = util.RemoverDuplicados(clave)
 	nroColumns := len(clave)
 	message = strings.ReplaceAll(message, " ", "")
 
@@ -125,20 +125,6 @@ func cypherByColumnsWithKey(data data.Data) string {
 	}
 
 	return textoCifrado.String()
-}
-
-func removeDuplicates(clave string) string {
-	seen := make(map[rune]bool)
-	builder := strings.Builder{}
-
-	for _, char := range clave {
-		if !seen[char] {
-			seen[char] = true
-			builder.WriteRune(char)
-		}
-	}
-
-	return builder.String()
 }
 
 func ordenarCaracteres(clave string) string {
@@ -193,7 +179,7 @@ func decrypt(data data.Data) string {
 
 func decryptWithKey(data data.Data) string {
 	var message = data.EncryptedMessage
-	var clave = removeDuplicates(data.Clave)
+	var clave = util.RemoverDuplicados(data.Clave)
 	var claveOrdenada = ordenarClave(clave)
 	var nroColumns = len(clave)
 	message = strings.ReplaceAll(message, " ", "")
