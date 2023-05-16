@@ -1,14 +1,5 @@
 package main
 
-import (
-	"criptograms/main/data"
-	"criptograms/main/encryptors"
-	"criptograms/main/encryptors/sustitucion/monoalfabetica"
-	"criptograms/main/encryptors/trasposicion"
-	"criptograms/main/util"
-	"fmt"
-)
-
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
@@ -31,13 +22,13 @@ func main() {
 	//var dataToDecryptConClave = data.Data{EncryptedMessage: textoCifradoConClave, Clave: "MAGNMA", PosCifradoCesar: 3}
 	//textoDecifradoConClave := cypherPuroConClave.Decrypt(dataToDecryptConClave)
 	//fmt.Println(util.Format(textoDecifradoConClave))
-
-	var trasposicionGrupos encryptors.EncryptorInterface = trasposicion.Grupos{}
-	var CifradoGrupos = data.Data{Message: "MENSAJEORIGINALOP", Clave: "231"}
-	var DesCifradoGrupos encryptors.EncryptorInterface = trasposicion.Grupos{}
-	var DescifrarGrupos = data.Data{Message: "SAJEORMENIGINALIGINAL", Clave: "312"}
-	fmt.Println(trasposicionGrupos.Cypher(CifradoGrupos))
-	fmt.Println(DesCifradoGrupos.Decrypt(DescifrarGrupos))
+	//
+	//var trasposicionGrupos encryptors.EncryptorInterface = trasposicion.Grupos{}
+	//var CifradoGrupos = data.Data{Message: "MENSAJEORIGINALOP", Clave: "231"}
+	//var DesCifradoGrupos encryptors.EncryptorInterface = trasposicion.Grupos{}
+	//var DescifrarGrupos = data.Data{Message: "SAJEORMENIGINALIGINAL", Clave: "312"}
+	//fmt.Println(trasposicionGrupos.Cypher(CifradoGrupos))
+	//fmt.Println(DesCifradoGrupos.Decrypt(DescifrarGrupos))
 
 	//var trasposicionSeries encryptors.EncryptorInterface = trasposicion.Series{}
 	//fmt.Println(trasposicionSeries.Cypher(dataToCypher))
@@ -67,8 +58,15 @@ func main() {
 
 	//todo Cifrado por Columnas
 
-	////var trasposicionFilas encryptors.EncryptorInterface = trasposicion.Filas{}
-	////fmt.Println(trasposicionFilas.Cypher(dataToCypher))
+	//dataFilas := data.Data{Message: "TRANSPOSICION POR FILAS", NroFilas: 4}
+	//trasposicionFilas := GetEncryptor(FILAS)
+	//resultado := trasposicionFilas.Cypher(dataFilas)
+	//fmt.Println(util.Format(resultado))
+	//
+	//dataFilasDecifrado := data.Data{EncryptedMessage: resultado, NroFilas: 4}
+	//resultadoDescifrado := trasposicionFilas.Decrypt(dataFilasDecifrado)
+	//fmt.Println(util.Format(resultadoDescifrado))
+
 	//
 	//var dataToCypherByZigZag = data.Data{Message: "VISTEME DESPACIO QUE TENGO PRISA", NroRails: 4}
 	////var dataToCypherByZigZag = data.Data{Message: "EL SISTEMA RAIL FENCE SE UTILIZO EN LA GUERRA DE SECESION", NroRails: 5}
@@ -85,13 +83,13 @@ func main() {
 	////var decimacionPura encryptors.EncryptorInterface = monoalfabetica.DecimacionPura{}
 	////fmt.Println(decimacionPura.Cypher(dataToCypher))
 	////
-	var transformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
-	var dataTransformacionAfin = data.Data{Message: "HOLA COMO ESTAS", Clave: "MARIO"}
-	var DescifradoTranformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
-	var textocifradoportransformacionafin = (transformacionAfin.Cypher(dataTransformacionAfin))
-	var dataDescifradoTransformacionAfin = data.Data{Message: textocifradoportransformacionafin, Clave: "MARIO"}
-	fmt.Println(util.Format(textocifradoportransformacionafin))
-	fmt.Println(DescifradoTranformacionAfin.Decrypt(dataDescifradoTransformacionAfin))
+	//var transformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
+	//var dataTransformacionAfin = data.Data{Message: "HOLA COMO ESTAS", Clave: "MARIO"}
+	//var DescifradoTranformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
+	//var textocifradoportransformacionafin = (transformacionAfin.Cypher(dataTransformacionAfin))
+	//var dataDescifradoTransformacionAfin = data.Data{Message: textocifradoportransformacionafin, Clave: "MARIO"}
+	//fmt.Println(util.Format(textocifradoportransformacionafin))
+	//fmt.Println(DescifradoTranformacionAfin.Decrypt(dataDescifradoTransformacionAfin))
 	////
 	////var poliAlfabetica encryptors.EncryptorInterface = sustitucion.Polialfabetica{}
 	////fmt.Println(poliAlfabetica.Cypher(dataToCypher))

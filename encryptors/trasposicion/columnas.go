@@ -66,9 +66,9 @@ func cypherByColumns(data data.Data) string {
 
 	//obtener texto cifrado
 	var textoCifrado strings.Builder
-	for fil := 0; fil < nroColumns; fil++ {
-		for col := 0; col < nroFilas; col++ {
-			textoCifrado.WriteRune(matriz[col][fil])
+	for col := 0; col < nroColumns; col++ {
+		for fil := 0; fil < nroFilas; fil++ {
+			textoCifrado.WriteRune(matriz[fil][col])
 		}
 
 		fmt.Println(textoCifrado.String())
@@ -116,9 +116,9 @@ func cypherByColumnsWithKey(data data.Data) string {
 
 	var textoCifrado strings.Builder
 	for _, char := range claveOrdenada {
-		fil := strings.Index(clave, string(char))
-		for col := 0; col < nroFilas; col++ {
-			textoCifrado.WriteRune(matriz[col][fil])
+		col := strings.Index(clave, string(char))
+		for fil := 0; fil < nroFilas; fil++ {
+			textoCifrado.WriteRune(matriz[fil][col])
 		}
 
 		fmt.Println(textoCifrado.String())
