@@ -29,21 +29,24 @@ func main() {
 	//textoDecifradoConClave := cypherPuroConClave.Decrypt(dataToDecryptConClave)
 	//fmt.Println(util.Format(textoDecifradoConClave))
 	//
-	//var trasposicionGrupos encryptors.EncryptorInterface = trasposicion.Grupos{}
-	//var CifradoGrupos = data.Data{Message: "MENSAJEORIGINALOP", Clave: "231"}
-	//var DesCifradoGrupos encryptors.EncryptorInterface = trasposicion.Grupos{}
-	//var DescifrarGrupos = data.Data{Message: "SAJEORMENIGINALIGINAL", Clave: "312"}
-	//fmt.Println(trasposicionGrupos.Cypher(CifradoGrupos))
-	//fmt.Println(DesCifradoGrupos.Decrypt(DescifrarGrupos))
+	cifradoGrupos := GetEncryptor(GRUPOS)
+	var CifradoGrupos = data.Data{Message: "UN SECRETO ALGO EXTRAÑO", Clave: "13572468"}
+	textoEncriptado := cifradoGrupos.Cypher(CifradoGrupos)
+	fmt.Println(util.Format(textoEncriptado))
 
-	var trasposicionSeries = GetEncryptor(SERIES)
-	var dataToCypherSeries = data.Data{Message: "AHORA CIFRAMOS POR SERIES"}
-	textoCifradoPorSeries := trasposicionSeries.Cypher(dataToCypherSeries)
-	fmt.Println(util.Format(textoCifradoPorSeries))
+	var DescifrarGrupos = data.Data{EncryptedMessage: textoEncriptado, Clave: "13572468"}
+	textoDesencriptado := cifradoGrupos.Decrypt(DescifrarGrupos)
+	fmt.Println(util.Format(textoDesencriptado))
 
-	var dataToDecriptSeries = data.Data{EncryptedMessage: textoCifradoPorSeries}
-	textoDescifradoPorSeries := trasposicionSeries.Decrypt(dataToDecriptSeries)
-	fmt.Println(util.Format(textoDescifradoPorSeries))
+	//
+	//var trasposicionSeries = GetEncryptor(SERIES)
+	//var dataToCypherSeries = data.Data{Message: "AHORA CIFRAMOS POR SERIES"}
+	//textoCifradoPorSeries := trasposicionSeries.Cypher(dataToCypherSeries)
+	//fmt.Println(util.Format(textoCifradoPorSeries))
+	//
+	//var dataToDecriptSeries = data.Data{EncryptedMessage: textoCifradoPorSeries}
+	//textoDescifradoPorSeries := trasposicionSeries.Decrypt(dataToDecriptSeries)
+	//fmt.Println(util.Format(textoDescifradoPorSeries))
 
 	//todo Cifrado por Columnas
 	//var dataToCypherByColumns = data.Data{Message: "ANDE YO CALIENTE Y RIASE LA GENTE", NroColumns: 8}

@@ -9,15 +9,15 @@ type Grupos struct {
 }
 
 func (r Grupos) Cypher(data data.Data) string {
-	//todo implementar aqui la logica para cifrar!!!
-
-	return transposeCipher(data.Message, data.Clave)
+	message := strings.ReplaceAll(strings.ToUpper(data.Message), " ", "")
+	return transposeCipher(message, data.Clave)
 }
 
 func (r Grupos) Decrypt(data data.Data) string {
 	//todo implementar aqui la logica para descifrar!!!
+	message := strings.ReplaceAll(strings.ToUpper(data.EncryptedMessage), " ", "")
 
-	return inverseTransposeCipher(data.Message, data.Clave)
+	return inverseTransposeCipher(message, data.Clave)
 }
 func transposeCipher(message, key string) string {
 	// Obtener la longitud del grupo y ajustar el mensaje si es necesario
@@ -25,33 +25,54 @@ func transposeCipher(message, key string) string {
 	messageLength := len(message)
 	remainder := messageLength % groupSize
 	if remainder != 0 {
-		padding := strings.Repeat("X", groupSize-remainder)
+		padding := strings.Repeat("X", groupSize-remainder+1)
 		message += padding
 		messageLength = len(message)
 	}
 
 	// Dividir el mensaje en grupos
-	groups := make([]string, messageLength/groupSize)
-	for i := 0; i < messageLength; i += groupSize {
-		groups[i/groupSize] = message[i : i+groupSize]
+	groups := splitCadena(message, groupSize)
+
+	textoCifrado := ""
+	for _, grupo := range groups {
+		textoCifrado += reorderTexto(grupo, key)
 	}
 
-	// Permutar los grupos según la clave
-	permutation := make([]int, groupSize)
-	for i, char := range key {
-		permutation[i] = int(char - '0')
-	}
-
-	permutedGroups := make([]string, len(groups))
-	for i, index := range permutation {
-		permutedGroups[i] = groups[index-1]
-	}
-
-	// Concatenar los grupos permutados para obtener el mensaje cifrado
-	ciphertext := strings.Join(permutedGroups, "")
-
-	return ciphertext
+	return textoCifrado
 }
+
+func splitCadena(cadena string, longitud int) []string {
+	grupos := len(cadena) / longitud
+	resultado := make([]string, grupos)
+
+	for i := 0; i < grupos; i++ {
+		inicio := i * longitud
+		fin := inicio + longitud
+
+		resultado[i] = cadena[inicio:fin]
+	}
+
+	return resultado
+}
+
+func reorderTexto(texto, clave string) string {
+	if len(texto) != len(clave) {
+		return ""
+	}
+
+	mapping := make([]rune, len(clave))
+	for i, c := range clave {
+		mapping[i] = rune(texto[int(c-'1')])
+	}
+
+	resultado := ""
+	for _, r := range mapping {
+		resultado += string(r)
+	}
+
+	return resultado
+}
+
 func inverseTransposeCipher(ciphertext, key string) string {
 	// Obtener la longitud del grupo
 	groupSize := len(key)
