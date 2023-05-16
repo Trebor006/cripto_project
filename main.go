@@ -1,12 +1,18 @@
 package main
 
+import (
+	"criptograms/main/data"
+	"criptograms/main/util"
+	"fmt"
+)
+
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
 	//var cypherPuro = GetEncryptor(PURO)
-	//var dataToCypher = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ"}
-	////var dataToCypher = data.Data{Message: "CESAR EL EMPERADOR HA SIDO ASESINADO"}
-	//textoCifrado := cypherPuro.Cypher(dataToCypher)
+	//var dataToCypherSeries = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ"}
+	////var dataToCypherSeries = data.Data{Message: "CESAR EL EMPERADOR HA SIDO ASESINADO"}
+	//textoCifrado := cypherPuro.Cypher(dataToCypherSeries)
 	//fmt.Println(util.Format(textoCifrado))
 	//
 	//var dataToDecrypt = data.Data{EncryptedMessage: textoCifrado}
@@ -30,8 +36,14 @@ func main() {
 	//fmt.Println(trasposicionGrupos.Cypher(CifradoGrupos))
 	//fmt.Println(DesCifradoGrupos.Decrypt(DescifrarGrupos))
 
-	//var trasposicionSeries encryptors.EncryptorInterface = trasposicion.Series{}
-	//fmt.Println(trasposicionSeries.Cypher(dataToCypher))
+	var trasposicionSeries = GetEncryptor(SERIES)
+	var dataToCypherSeries = data.Data{Message: "AHORA CIFRAMOS POR SERIES"}
+	textoCifradoPorSeries := trasposicionSeries.Cypher(dataToCypherSeries)
+	fmt.Println(util.Format(textoCifradoPorSeries))
+
+	var dataToDecriptSeries = data.Data{EncryptedMessage: textoCifradoPorSeries}
+	textoDescifradoPorSeries := trasposicionSeries.Decrypt(dataToDecriptSeries)
+	fmt.Println(util.Format(textoDescifradoPorSeries))
 
 	//todo Cifrado por Columnas
 	//var dataToCypherByColumns = data.Data{Message: "ANDE YO CALIENTE Y RIASE LA GENTE", NroColumns: 8}
@@ -81,7 +93,7 @@ func main() {
 	//fmt.Println(util.Format(textoDescifradoZigZag))
 
 	////var decimacionPura encryptors.EncryptorInterface = monoalfabetica.DecimacionPura{}
-	////fmt.Println(decimacionPura.Cypher(dataToCypher))
+	////fmt.Println(decimacionPura.Cypher(dataToCypherSeries))
 	////
 	//var transformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
 	//var dataTransformacionAfin = data.Data{Message: "HOLA COMO ESTAS", Clave: "MARIO"}
@@ -92,7 +104,7 @@ func main() {
 	//fmt.Println(DescifradoTranformacionAfin.Decrypt(dataDescifradoTransformacionAfin))
 	////
 	////var poliAlfabetica encryptors.EncryptorInterface = sustitucion.Polialfabetica{}
-	////fmt.Println(poliAlfabetica.Cypher(dataToCypher))
+	////fmt.Println(poliAlfabetica.Cypher(dataToCypherSeries))
 	//
 	//
 	//random := util.ObtenerGeneradorRandom()
@@ -112,7 +124,7 @@ func main() {
 	//fmt.Println(homofonoPrimerOrden.Decrypt(dataToDecryptByPrimerOrden2))
 
 	////var homofonoOrdenMayor encryptors.EncryptorInterface = homofonos.HomofonoOrdenMayor{}
-	////fmt.Println(homofonoOrdenMayor.Cypher(dataToCypher))
+	////fmt.Println(homofonoOrdenMayor.Cypher(dataToCypherSeries))
 	//
 	//var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "HOLA AMIGOS", Clave: "CIFRA"}
 	////var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "eres como una mariposa vuelas y te posas", Clave: "MANA"}
