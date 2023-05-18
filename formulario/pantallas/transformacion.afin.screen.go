@@ -5,9 +5,9 @@ import (
 	"cripto_project/main/encryptors"
 	"cripto_project/main/formulario/widgets"
 	"cripto_project/main/util"
-	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
+	"strconv"
 )
 
 func TransformacionAfinGenerarPantalla(w fyne.Window) fyne.CanvasObject {
@@ -18,8 +18,11 @@ func TransformacionAfinGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	textoInicial.SetPlaceHolder("Texto a Encriptar/Desencriptar")
 	textoInicial.SetMinRowsVisible(5)
 
-	clave := widget.NewEntry()
-	clave.SetPlaceHolder("Clave")
+	decimacion := widgets.NewNumEntry()
+	decimacion.SetPlaceHolder("Decimacion")
+
+	desplazamiento := widgets.NewNumEntry()
+	desplazamiento.SetPlaceHolder("Desplazamiento")
 
 	textoResultante := widget.NewMultiLineEntry()
 	textoResultante.SetPlaceHolder("Resultado")
@@ -28,7 +31,9 @@ func TransformacionAfinGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		dataTransformacionAfin := data.Data{Message: textoInicial.Text, Clave: clave.Text}
+		nroDecimacion, _ := strconv.Atoi(decimacion.Text)
+		nroDesplazamiento, _ := strconv.Atoi(desplazamiento.Text)
+		dataTransformacionAfin := data.Data{Message: textoInicial.Text, NroDecimacion: nroDecimacion, Desplazamiento: nroDesplazamiento}
 
 		textocifradoportransformacionafin := transformacionAfin.Cypher(dataTransformacionAfin)
 		textoResultante.SetText(util.Format(textocifradoportransformacionafin))
@@ -36,8 +41,9 @@ func TransformacionAfinGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
-
-		dataDescifradoTransformacionAfin := data.Data{EncryptedMessage: textoInicial.Text, Clave: clave.Text}
+		nroDecimacion, _ := strconv.Atoi(decimacion.Text)
+		nroDesplazamiento, _ := strconv.Atoi(desplazamiento.Text)
+		dataDescifradoTransformacionAfin := data.Data{EncryptedMessage: textoInicial.Text, NroDecimacion: nroDecimacion, Desplazamiento: nroDesplazamiento}
 
 		textoDescrifrado := transformacionAfin.Decrypt(dataDescifradoTransformacionAfin)
 		textoResultante.SetText(util.Format(textoDescrifrado))
@@ -46,7 +52,8 @@ func TransformacionAfinGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	form := &widget.Form{
 		Items: []*widget.FormItem{
 			{Text: "Texto Inicial", Widget: textoInicial, HintText: "Introduzca el texto a Encriptar/Desencriptar"},
-			{Text: "Clave", Widget: clave, HintText: "Introduzca la clave"},
+			{Text: "Decimacion", Widget: decimacion, HintText: "Introduzca la decimacion"},
+			{Text: "Desplazamiento", Widget: desplazamiento, HintText: "Introduzca el desplazamiento"},
 			{Text: "Resultado", Widget: textoResultante, HintText: "Aqui se mostrara el resultado"},
 		},
 	}
