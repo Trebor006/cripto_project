@@ -13,8 +13,9 @@ type HomofonoPrimerOrden struct {
 func (h HomofonoPrimerOrden) Cypher(data data.Data) string {
 	diccionario := data.Diccionario
 	message := strings.ReplaceAll(data.Message, " ", "")
+	randomGenerator := data.RandomGenerator
+
 	textoEncriptado := ""
-	var randomGenerator = data.RandomGenerator
 	for _, char := range message {
 		detail := diccionario[strings.ToUpper(string(char))]
 		pos := util.GenerarNumeroRandom(len(detail), randomGenerator)

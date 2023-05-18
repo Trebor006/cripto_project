@@ -10,7 +10,7 @@ type Data struct {
 	NroFilas         int    // Para Cifrado por Fila
 	NroRails         int    // Para Cifrado por Rails o ZigZag
 	PosCifradoCesar  int    // Para Cifrado por Cesar
-	//NroDecimacion    int    //Transformacion Afin
+	NroDecimacion    int    //Transformacion Afin
 	//Desplazamiento   int    //Transformacion Afin
 
 	Diccionario     map[string][]int //Para Cifrado de Primer Orden
