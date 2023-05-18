@@ -10,14 +10,16 @@ type TransformacionAfin struct {
 
 func (r TransformacionAfin) Cypher(data data.Data) string {
 	message := strings.ToLower(strings.ReplaceAll(data.Message, " ", ""))
+	clave := strings.ToLower(strings.ReplaceAll(data.Clave, " ", ""))
 
-	return cifrar(message, data.Clave)
+	return cifrar(message, clave)
 }
 
 func (r TransformacionAfin) Decrypt(data data.Data) string {
 	message := strings.ToLower(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
+	clave := strings.ToLower(strings.ReplaceAll(data.Clave, " ", ""))
 
-	return descifrar(message, data.Clave)
+	return descifrar(message, clave)
 }
 
 func cifrar(texto, clave string) string {
