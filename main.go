@@ -89,8 +89,15 @@ func main() {
 	//var textoDescifradoZigZag = trasposicionZigZag.Decrypt(dataToDecryptByZigZag)
 	//fmt.Println(util.Format(textoDescifradoZigZag))
 
-	////var decimacionPura encryptors.EncryptorInterface = monoalfabetica.DecimacionPura{}
-	////fmt.Println(decimacionPura.Cypher(dataToCypherSeries))
+	//decimacionPura := encryptors.GetEncryptor(encryptors.DECIMACION_PURA)
+	//var dataToCypherDecimacionPura = data.Data{Message: "DILE A LAURA QUE LA QUIERO", NroDecimacion: 20}
+	//textoCifradoPorDecimacionPura := decimacionPura.Cypher(dataToCypherDecimacionPura)
+	//fmt.Println(util.Format(textoCifradoPorDecimacionPura))
+	//
+	////var dataToDecryptDecimacionPura = data.Data{EncryptedMessage: textoCifradoPorDecimacionPura, NroDecimacion: 20}
+	//var dataToDecryptDecimacionPura = data.Data{EncryptedMessage: "M_ZHW DHBGR HZZAU DHRG", NroDecimacion: 22}
+	//textoDesencriptadoPorDecimacionPura := decimacionPura.Decrypt(dataToDecryptDecimacionPura)
+	//fmt.Println(util.Format(textoDesencriptadoPorDecimacionPura))
 	////
 	//var transformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
 	//var dataTransformacionAfin = data.Data{Message: "HOLA COMO ESTAS", Clave: "MARIO"}
