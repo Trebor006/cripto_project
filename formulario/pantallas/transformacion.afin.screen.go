@@ -5,6 +5,7 @@ import (
 	"cripto_project/main/encryptors"
 	"cripto_project/main/formulario/widgets"
 	"cripto_project/main/util"
+	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
 	"strconv"

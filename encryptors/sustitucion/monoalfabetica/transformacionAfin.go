@@ -14,7 +14,7 @@ func (r TransformacionAfin) Cypher(data data.Data) string {
 }
 
 func (r TransformacionAfin) Decrypt(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
+	message := strings.ToUpper(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
 	return descifradoAfin(message, data.NroDecimacion, data.Desplazamiento)
 }
 func cifradoAfin(mensaje string, decimacion, desplazamiento int) string {
