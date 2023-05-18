@@ -1,12 +1,12 @@
 package main
 
 import (
-	"criptograms/main/encryptors"
-	"criptograms/main/encryptors/desplazamiento"
-	"criptograms/main/encryptors/sustitucion/homofonos"
-	"criptograms/main/encryptors/sustitucion/monoalfabetica"
-	"criptograms/main/encryptors/sustitucion_monogramica"
-	"criptograms/main/encryptors/trasposicion"
+	"cripto_project/main/encryptors"
+	"cripto_project/main/encryptors/desplazamiento"
+	"cripto_project/main/encryptors/sustitucion/homofonos"
+	"cripto_project/main/encryptors/sustitucion/monoalfabetica"
+	"cripto_project/main/encryptors/sustitucion_monogramica"
+	"cripto_project/main/encryptors/trasposicion"
 	"fmt"
 )
 

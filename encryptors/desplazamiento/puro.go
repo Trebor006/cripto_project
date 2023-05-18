@@ -1,8 +1,8 @@
 package desplazamiento
 
 import (
-	"criptograms/main/data"
-	util "criptograms/main/util"
+	"cripto_project/main/data"
+	util "cripto_project/main/util"
 	"strings"
 )
 

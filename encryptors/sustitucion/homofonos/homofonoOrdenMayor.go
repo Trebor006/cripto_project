@@ -1,6 +1,6 @@
 package homofonos
 
-import "criptograms/main/data"
+import "cripto_project/main/data"
 
 type HomofonoOrdenMayor struct {
 }

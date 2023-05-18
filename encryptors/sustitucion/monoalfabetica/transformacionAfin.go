@@ -1,7 +1,7 @@
 package monoalfabetica
 
 import (
-	"criptograms/main/data"
+	"cripto_project/main/data"
 	"strings"
 )
 

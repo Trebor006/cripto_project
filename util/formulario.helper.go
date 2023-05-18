@@ -1,7 +1,7 @@
 package util
 
 import (
-	"criptograms/main/util/formulario"
+	"cripto_project/main/util/formulario"
 	"fmt"
 )
 

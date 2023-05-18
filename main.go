@@ -1,11 +1,5 @@
 package main
 
-import (
-	"criptograms/main/data"
-	"criptograms/main/util"
-	"fmt"
-)
-
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
@@ -29,15 +23,15 @@ func main() {
 	//textoDecifradoConClave := cypherPuroConClave.Decrypt(dataToDecryptConClave)
 	//fmt.Println(util.Format(textoDecifradoConClave))
 	//
-	cifradoGrupos := GetEncryptor(GRUPOS)
-	var CifradoGrupos = data.Data{Message: "UN SECRETO ALGO EXTRANO", Clave: "13572468"}
-	textoEncriptado := cifradoGrupos.Cypher(CifradoGrupos)
-	fmt.Println(util.Format(textoEncriptado))
-
-	var DescifrarGrupos = data.Data{EncryptedMessage: textoEncriptado, Clave: "13572468"}
-	textoDesencriptado := cifradoGrupos.Decrypt(DescifrarGrupos)
-	fmt.Println(util.Format(textoDesencriptado))
-
+	//cifradoGrupos := GetEncryptor(GRUPOS)
+	//var CifradoGrupos = data.Data{Message: "UN SECRETO ALGO EXTRANO", Clave: "13572468"}
+	//textoEncriptado := cifradoGrupos.Cypher(CifradoGrupos)
+	//fmt.Println(util.Format(textoEncriptado))
+	//
+	//var DescifrarGrupos = data.Data{EncryptedMessage: textoEncriptado, Clave: "13572468"}
+	//textoDesencriptado := cifradoGrupos.Decrypt(DescifrarGrupos)
+	//fmt.Println(util.Format(textoDesencriptado))
+	//
 	//
 	//var trasposicionSeries = GetEncryptor(SERIES)
 	//var dataToCypherSeries = data.Data{Message: "AHORA CIFRAMOS POR SERIES"}
