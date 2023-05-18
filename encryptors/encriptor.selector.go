@@ -1,7 +1,6 @@
-package main
+package encryptors
 
 import (
-	"cripto_project/main/encryptors"
 	"cripto_project/main/encryptors/desplazamiento"
 	"cripto_project/main/encryptors/sustitucion/homofonos"
 	"cripto_project/main/encryptors/sustitucion/monoalfabetica"
@@ -29,7 +28,7 @@ const (
 	ZIG_ZAG                  MetodosEncriptado = iota
 )
 
-func GetEncryptor(metodoEncriptado MetodosEncriptado) encryptors.EncryptorInterface {
+func GetEncryptor(metodoEncriptado MetodosEncriptado) EncryptorInterface {
 	switch metodoEncriptado {
 	case PURO:
 		return desplazamiento.Puro{}
