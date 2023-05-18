@@ -3,7 +3,7 @@ package main
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
-	//var cypherPuro = GetEncryptor(PURO)
+	//var cypherPuro = encryptors.GetEncryptor(encryptors.PURO)
 	//var dataToCypherSeries = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ"}
 	////var dataToCypherSeries = data.Data{Message: "CESAR EL EMPERADOR HA SIDO ASESINADO"}
 	//textoCifrado := cypherPuro.Cypher(dataToCypherSeries)
@@ -14,7 +14,7 @@ func main() {
 	//textoDecifrado := cypherPuro.Decrypt(dataToDecrypt)
 	//fmt.Println(util.Format(textoDecifrado))
 
-	//var cypherPuroConClave = GetEncryptor(PURO_CON_CLAVE)
+	//var cypherPuroConClave = encryptors.GetEncryptor(encryptors.PURO_CON_CLAVE)
 	//var dataToCypherConClave = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ", Clave: "MAGNMA", PosCifradoCesar: 3}
 	//textoCifradoConClave := cypherPuroConClave.Cypher(dataToCypherConClave)
 	//fmt.Println(util.Format(textoCifradoConClave))
@@ -23,7 +23,7 @@ func main() {
 	//textoDecifradoConClave := cypherPuroConClave.Decrypt(dataToDecryptConClave)
 	//fmt.Println(util.Format(textoDecifradoConClave))
 	//
-	//cifradoGrupos := GetEncryptor(GRUPOS)
+	//cifradoGrupos := encryptors.GetEncryptor(encryptors.GRUPOS)
 	//var CifradoGrupos = data.Data{Message: "UN SECRETO ALGO EXTRANO", Clave: "13572468"}
 	//textoEncriptado := cifradoGrupos.Cypher(CifradoGrupos)
 	//fmt.Println(util.Format(textoEncriptado))
@@ -33,7 +33,7 @@ func main() {
 	//fmt.Println(util.Format(textoDesencriptado))
 	//
 	//
-	//var trasposicionSeries = GetEncryptor(SERIES)
+	//var trasposicionSeries = encryptors.GetEncryptor(encryptors.SERIES)
 	//var dataToCypherSeries = data.Data{Message: "AHORA CIFRAMOS POR SERIES"}
 	//textoCifradoPorSeries := trasposicionSeries.Cypher(dataToCypherSeries)
 	//fmt.Println(util.Format(textoCifradoPorSeries))
@@ -68,7 +68,7 @@ func main() {
 	//todo Cifrado por Columnas
 
 	//dataFilas := data.Data{Message: "TRANSPOSICION POR FILAS", NroFilas: 4}
-	//trasposicionFilas := GetEncryptor(FILAS)
+	//trasposicionFilas := encryptors.GetEncryptor(encryptors.FILAS)
 	//resultado := trasposicionFilas.Cypher(dataFilas)
 	//fmt.Println(util.Format(resultado))
 	//
@@ -125,7 +125,7 @@ func main() {
 	//
 	//var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "HOLA AMIGOS", Clave: "CIFRA"}
 	////var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "eres como una mariposa vuelas y te posas", Clave: "MANA"}
-	//var poliAlfabeticosPeriodicos encryptors.EncryptorInterface = GetEncryptor(POLIALFABETICO_PERIODICO)
+	//var poliAlfabeticosPeriodicos encryptors.EncryptorInterface = encryptors.GetEncryptor(encryptors.POLIALFABETICO_PERIODICO)
 	//var textoCifradoVigenere = poliAlfabeticosPeriodicos.Cypher(dataToCypherByPolialfabeticoPeriodico)
 	//fmt.Println(util.Format(textoCifradoVigenere))
 	//
