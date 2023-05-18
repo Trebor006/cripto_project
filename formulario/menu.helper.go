@@ -1,14 +1,20 @@
 package formulario
 
-import "cripto_project/main/formulario/pantallas"
+import (
+	"cripto_project/main/formulario/pantallas"
+	"cripto_project/main/formulario/widgets"
+	"fyne.io/fyne/v2"
+)
 
 func GenerarMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 	cifradosDeDesplazamiento := fyne.NewMenuItem("Cifra de Desplazamiento", nil)
 	cifradosDeDesplazamiento.ChildMenu = fyne.NewMenu("",
 		fyne.NewMenuItem("Puro", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.PuroGenerarPantalla(w))
 		}),
 		fyne.NewMenuItem("Puro con Palabra Clave", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.PuroConClaveGenerarPantalla(w))
 		}),
 	)
@@ -16,18 +22,23 @@ func GenerarMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 	cifradosPorTraspocicion := fyne.NewMenuItem("Cifra por Transposición", nil)
 	cifradosPorTraspocicion.ChildMenu = fyne.NewMenu("",
 		fyne.NewMenuItem("Grupos", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.GruposGenerarPantalla(w))
 		}),
 		fyne.NewMenuItem("Series", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.SeriesGenerarPantalla(w))
 		}),
 		fyne.NewMenuItem("Columnas", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.ColumnasGenerarPantalla(w))
 		}),
 		fyne.NewMenuItem("Filas", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.FilasGenerarPantalla(w))
 		}),
 		fyne.NewMenuItem("Zig-Zag", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.ZigZagGenerarPantalla(w))
 		}),
 	)
@@ -37,9 +48,11 @@ func GenerarMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 
 	sustitucionMonoAlfabetica.ChildMenu = fyne.NewMenu("",
 		fyne.NewMenuItem("Decimación Pura", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.DecimacionPuraGenerarPantalla(w))
 		}),
 		fyne.NewMenuItem("Transformación Afín", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.TransformacionAfinGenerarPantalla(w))
 		}),
 	)
@@ -50,6 +63,7 @@ func GenerarMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 			w.SetContent(pantallas.HomofonoPrimerOrdenGenerarPantalla(w))
 		}),
 		fyne.NewMenuItem("Homófonos de Orden Mayor", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.HomofonoOrdenMayorGenerarPantalla(w))
 		}),
 	)
@@ -63,6 +77,7 @@ func GenerarMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 	cifradosPorSustitucionMonografica := fyne.NewMenuItem("Sustitucion Monogramica Polialfabeto", nil)
 	cifradosPorSustitucionMonografica.ChildMenu = fyne.NewMenu("",
 		fyne.NewMenuItem("Polialfabeticos periodicos", func() {
+			widgets.LimpiarConsola()
 			w.SetContent(pantallas.PolialfabeticosPeriodicosGenerarPantalla(w))
 		}),
 	)

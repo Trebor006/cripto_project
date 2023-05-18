@@ -3,12 +3,16 @@ package pantallas
 import (
 	"cripto_project/main/data"
 	"cripto_project/main/encryptors"
-	"cripto_project/main/formulario"
+	"cripto_project/main/formulario/widgets"
+	"cripto_project/main/util"
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/widget"
 )
 
 func PuroGenerarPantalla(w fyne.Window) fyne.CanvasObject {
-	separadorTitulo := formulario.GenerarSeparadorTitulo("Cifrado Cesar")
-	encryptor := encryptors.GetEncryptor(encryptors.PURO)
+	separadorTitulo := widgets.GenerarSeparadorTitulo("Cifrado Cesar")
+	metodoCifrado := encryptors.GetEncryptor(encryptors.PURO)
 
 	textoInicial := widget.NewMultiLineEntry()
 	textoInicial.SetPlaceHolder("Texto a Encriptar/Desencriptar")
@@ -19,17 +23,21 @@ func PuroGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	textoResultante.SetMinRowsVisible(5)
 
 	botonEncriptar := widget.NewButton("Encriptar", func() {
-		data := data.Data{}
-		data.Message = textoInicial.Text
-		textoCifrado := encryptor.Cypher(data)
-		textoResultante.SetText(textoCifrado)
+		widgets.LimpiarConsola()
+
+		dataAEncriptar := data.Data{Message: textoInicial.Text}
+
+		textoCifrado := metodoCifrado.Cypher(dataAEncriptar)
+		textoResultante.SetText(util.Format(textoCifrado))
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
-		data := data.Data{}
-		data.EncryptedMessage = textoInicial.Text
-		textoCifrado := encryptor.Decrypt(data)
-		textoResultante.SetText(textoCifrado)
+		widgets.LimpiarConsola()
+
+		dataEncriptada := data.Data{EncryptedMessage: textoInicial.Text}
+
+		textoClaro := metodoCifrado.Decrypt(dataEncriptada)
+		textoResultante.SetText(util.Format(textoClaro))
 	})
 
 	form := &widget.Form{
@@ -39,12 +47,7 @@ func PuroGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 		},
 	}
 
-	//toolTips := widget.NewToolbar(
-	//	widget.NewToolbarSpacer(),
-	//	widget.NewToolbarAction(theme.MoveUpIcon(), func() {
-	//		fmt.Println("Copy")
-	//	}))
-
+	toolTips := widgets.GenerateToolTipCopyButton(textoInicial, textoResultante)
 	//form.AppendItem(buttonsLayout)
 	//form.AppendItem(botonEncriptar)
 
@@ -53,7 +56,7 @@ func PuroGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 
 	return container.NewVBox(
 		separadorTitulo,
-		//toolTips,
+		toolTips,
 		form,
 	)
 }

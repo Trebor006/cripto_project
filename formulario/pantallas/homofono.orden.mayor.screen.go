@@ -3,12 +3,18 @@ package pantallas
 import (
 	"cripto_project/main/data"
 	"cripto_project/main/encryptors"
-	"cripto_project/main/formulario"
+	"cripto_project/main/formulario/widgets"
+	"cripto_project/main/util"
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/widget"
 )
 
 func HomofonoOrdenMayorGenerarPantalla(w fyne.Window) fyne.CanvasObject {
-	separadorTitulo := formulario.GenerarSeparadorTitulo("Orden Mayor")
-	encryptor := encryptors.GetEncryptor(encryptors.ORDEN_MAYOR)
+	separadorTitulo := widgets.GenerarSeparadorTitulo("Orden Mayor")
+	metodoCifrado := encryptors.GetEncryptor(encryptors.ORDEN_MAYOR)
+	random := util.ObtenerGeneradorRandom()
+	diccionario := util.InicializarDiccionarioOrdenMayor(5000, random)
 
 	textoInicial := widget.NewMultiLineEntry()
 	textoInicial.SetPlaceHolder("Texto a Encriptar/Desencriptar")
@@ -19,17 +25,20 @@ func HomofonoOrdenMayorGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	textoResultante.SetMinRowsVisible(5)
 
 	botonEncriptar := widget.NewButton("Encriptar", func() {
-		data := data.Data{}
-		data.Message = textoInicial.Text
-		textoCifrado := encryptor.Cypher(data)
-		textoResultante.SetText(textoCifrado)
+		widgets.LimpiarConsola()
+
+		dataToCypherOrdenMayor := data.Data{Message: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
+
+		textoCifradoPorOrdenMayor := metodoCifrado.Cypher(dataToCypherOrdenMayor)
+		textoResultante.SetText(util.Format(textoCifradoPorOrdenMayor))
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
-		data := data.Data{}
-		data.EncryptedMessage = textoInicial.Text
-		textoCifrado := encryptor.Decrypt(data)
-		textoResultante.SetText(textoCifrado)
+		widgets.LimpiarConsola()
+		dataToDecryptOrdenMayor := data.Data{EncryptedMessage: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
+
+		textoDescifradoPorOrdenMayor := metodoCifrado.Decrypt(dataToDecryptOrdenMayor)
+		textoResultante.SetText(util.Format(textoDescifradoPorOrdenMayor))
 	})
 
 	form := &widget.Form{
@@ -39,11 +48,7 @@ func HomofonoOrdenMayorGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 		},
 	}
 
-	//toolTips := widget.NewToolbar(
-	//	widget.NewToolbarSpacer(),
-	//	widget.NewToolbarAction(theme.MoveUpIcon(), func() {
-	//		fmt.Println("Copy")
-	//	}))
+	toolTips := widgets.GenerateToolTipCopyButton(textoInicial, textoResultante)
 
 	//form.AppendItem(buttonsLayout)
 	//form.AppendItem(botonEncriptar)
@@ -53,7 +58,7 @@ func HomofonoOrdenMayorGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 
 	return container.NewVBox(
 		separadorTitulo,
-		//toolTips,
+		toolTips,
 		form,
 	)
 }

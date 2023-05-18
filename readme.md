@@ -8,6 +8,8 @@ Instalar fyne
 Para instalar fyne, ejecuta el siguiente comando en tu terminal:
 
 
+El proyecto depende de dos librerias para funcionar
+
 go get fyne.io/fyne/v2
 
 

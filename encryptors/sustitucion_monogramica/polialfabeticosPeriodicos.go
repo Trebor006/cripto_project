@@ -59,7 +59,7 @@ func (r PolialfabeticosPeriodicos) Cypher(data data.Data) string {
 }
 
 func (r PolialfabeticosPeriodicos) Decrypt(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
+	message := strings.ToUpper(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
 	clave := strings.ToUpper(data.Clave)
 
 	nroFilas := 1
