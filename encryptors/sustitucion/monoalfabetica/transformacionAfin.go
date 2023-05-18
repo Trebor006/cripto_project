@@ -9,13 +9,13 @@ type TransformacionAfin struct {
 }
 
 func (r TransformacionAfin) Cypher(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
+	message := strings.ToLower(strings.ReplaceAll(data.Message, " ", ""))
 
 	return cifrar(message, data.Clave)
 }
 
 func (r TransformacionAfin) Decrypt(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
+	message := strings.ToLower(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
 
 	return descifrar(message, data.Clave)
 }
@@ -31,7 +31,7 @@ func cifrar(texto, clave string) string {
 		if c >= 'a' && c <= 'z' {
 			c -= 'a'
 			k := clave[contador] - 'a'
-			caracterCifrado := (c + int32(k)) % 27
+			caracterCifrado := (c + int32(k)) % 26
 			caracterCifrado += 'a'
 			resultado += string(caracterCifrado)
 		} else {
@@ -57,7 +57,7 @@ func descifrar(textoCifrado, clave string) string {
 		if c >= 'a' && c <= 'z' {
 			c -= 'a'
 			k := clave[contador] - 'a'
-			caracterDescifrado := (c - int32(k) + 27) % 27
+			caracterDescifrado := (c - int32(k) + 26) % 26
 			caracterDescifrado += 'a'
 			resultado += string(caracterDescifrado)
 		} else {

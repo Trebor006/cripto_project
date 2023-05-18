@@ -28,7 +28,7 @@ func HomofonoPrimerOrdenGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 		widgets.LimpiarConsola()
 		dataToCypherByPrimerOrden := data.Data{Message: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
 		encryptedMessageByPrimerOrden := homofonoPrimerOrden.Cypher(dataToCypherByPrimerOrden)
-		textoResultante.SetText(util.Format(encryptedMessageByPrimerOrden))
+		textoResultante.SetText(encryptedMessageByPrimerOrden)
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {

@@ -30,7 +30,7 @@ func HomofonoOrdenMayorGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 		dataToCypherOrdenMayor := data.Data{Message: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
 
 		textoCifradoPorOrdenMayor := metodoCifrado.Cypher(dataToCypherOrdenMayor)
-		textoResultante.SetText(util.Format(textoCifradoPorOrdenMayor))
+		textoResultante.SetText(textoCifradoPorOrdenMayor)
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
