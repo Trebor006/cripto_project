@@ -1,10 +1,9 @@
 package main
 
 import (
-	"criptograms/main/data"
-	"criptograms/main/encryptors"
-	"criptograms/main/util"
-	"fyne.io/fyne/v2"
+	"cripto_project/main/data"
+	"cripto_project/main/encryptors"
+	"cripto_project/main/util"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"

@@ -1,8 +1,8 @@
 package trasposicion
 
 import (
-	"criptograms/main/data"
-	"criptograms/main/util"
+	"cripto_project/main/data"
+	"cripto_project/main/util"
 	"fmt"
 	"strings"
 )

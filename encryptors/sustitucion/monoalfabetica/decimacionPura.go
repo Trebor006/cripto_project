@@ -1,6 +1,6 @@
 package monoalfabetica
 
-import "criptograms/main/data"
+import "cripto_project/main/data"
 
 type DecimacionPura struct {
 }

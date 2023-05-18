@@ -1,4 +1,4 @@
-module criptograms/main
+module cripto_project/main
 //go:build utf8
 // +build utf8
 
