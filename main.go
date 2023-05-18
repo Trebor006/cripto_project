@@ -100,15 +100,15 @@ func main() {
 	//fmt.Println(util.Format(textoDesencriptadoPorDecimacionPura))
 	////
 	//var transformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
-	//var dataTransformacionAfin = data.Data{Message: "HOLA COMO ESTAS", Clave: "MARIO"}
+	//var dataTransformacionAfin = data.Data{Message: "HOLA MUNDO", NroDecimacion: 5, Desplazamiento: 8}
 	//var DescifradoTranformacionAfin encryptors.EncryptorInterface = monoalfabetica.TransformacionAfin{}
 	//var textocifradoportransformacionafin = (transformacionAfin.Cypher(dataTransformacionAfin))
-	//var dataDescifradoTransformacionAfin = data.Data{Message: textocifradoportransformacionafin, Clave: "MARIO"}
+	//var dataDescifradoTransformacionAfin = data.Data{Message: textocifradoportransformacionafin, NroDecimacion: 5, Desplazamiento: 8}
 	//fmt.Println(util.Format(textocifradoportransformacionafin))
 	//fmt.Println(DescifradoTranformacionAfin.Decrypt(dataDescifradoTransformacionAfin))
-	////
-	////var poliAlfabetica encryptors.EncryptorInterface = sustitucion.Polialfabetica{}
-	////fmt.Println(poliAlfabetica.Cypher(dataToCypherSeries))
+	//
+	//var poliAlfabetica encryptors.EncryptorInterface = sustitucion.Polialfabetica{}
+	//fmt.Println(poliAlfabetica.Cypher(dataToCypherSeries))
 	//
 	//
 	//random := util.ObtenerGeneradorRandom()
