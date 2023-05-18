@@ -38,10 +38,15 @@ func makeCell() fyne.CanvasObject {
 func GenerateToolTipCopyButton(textoInicial *widget.Entry, textoResultante *widget.Entry) *widget.Toolbar {
 	return widget.NewToolbar(
 		widget.NewToolbarSpacer(),
+		widget.NewToolbarAction(theme.CancelIcon(), func() {
+			textoInicial.SetText("")
+			textoResultante.SetText("")
+		}),
 		widget.NewToolbarAction(theme.ContentCopyIcon(), func() {
 			textoInicial.SetText(textoResultante.Text)
 			textoResultante.SetText("")
-		}))
+		}),
+	)
 }
 
 func LimpiarConsola() {
