@@ -1,5 +1,7 @@
 package main
 
+import "cripto_project/main/formulario"
+
 func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
@@ -149,5 +151,5 @@ func main() {
 	//var textoDesencriptadoVigenere = poliAlfabeticosPeriodicos.Decrypt(dataToDecryptByPolialfabeticoPeriodico)
 	//fmt.Println(util.Format(textoDesencriptadoVigenere))
 
-	GenerarFormulario()
+	formulario.GenerarFormulario()
 }
