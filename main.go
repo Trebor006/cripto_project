@@ -4,8 +4,8 @@ func main() {
 
 	//Aqui va estar toda la información general, Mensajes, claves, etc...
 	//var cypherPuro = encryptors.GetEncryptor(encryptors.PURO)
-	//var dataToCypherSeries = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ"}
-	////var dataToCypherSeries = data.Data{Message: "CESAR EL EMPERADOR HA SIDO ASESINADO"}
+	////var dataToCypherSeries = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ"}
+	//var dataToCypherSeries = data.Data{Message: "CESAR EL EMPERADOR HA SIDO ASESINADO"}
 	//textoCifrado := cypherPuro.Cypher(dataToCypherSeries)
 	//fmt.Println(util.Format(textoCifrado))
 	//
@@ -15,11 +15,11 @@ func main() {
 	//fmt.Println(util.Format(textoDecifrado))
 
 	//var cypherPuroConClave = encryptors.GetEncryptor(encryptors.PURO_CON_CLAVE)
-	//var dataToCypherConClave = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ", Clave: "MAGNMA", PosCifradoCesar: 3}
+	//var dataToCypherConClave = data.Data{Message: "ABCDEFGHIJKLMN_OPQRSTUVWXYZ", Clave: "MAGNMA"}
 	//textoCifradoConClave := cypherPuroConClave.Cypher(dataToCypherConClave)
 	//fmt.Println(util.Format(textoCifradoConClave))
 	//
-	//var dataToDecryptConClave = data.Data{EncryptedMessage: textoCifradoConClave, Clave: "MAGNMA", PosCifradoCesar: 3}
+	//var dataToDecryptConClave = data.Data{EncryptedMessage: textoCifradoConClave, Clave: "MAGNMA"}
 	//textoDecifradoConClave := cypherPuroConClave.Decrypt(dataToDecryptConClave)
 	//fmt.Println(util.Format(textoDecifradoConClave))
 	//
@@ -44,13 +44,13 @@ func main() {
 
 	//todo Cifrado por Columnas
 	//var dataToCypherByColumns = data.Data{Message: "ANDE YO CALIENTE Y RIASE LA GENTE", NroColumns: 8}
-	//var dataToCypherByColumns = data.Data{Message: "ANDE YO CALIENTE Y RIASE LA GENTE", NroColumns: 8}
-	//var dataToCypherByColumns = data.Data{Message: "EL MALWARE TAMBIEN CONOCIDO COMO CODIGO MALIGNO O CODIGO MALICIOSO ES UN TIPO DE SOFTWARE QUE TIENE COMO OBJETIVO INFILTRARSE O DANAR UN SISTEMA INFORMATICO", NroColumns: 9}
+	////var dataToCypherByColumns = data.Data{Message: "ANDE YO CALIENTE Y RIASE LA GENTE", NroColumns: 8}
+	////var dataToCypherByColumns = data.Data{Message: "EL MALWARE TAMBIEN CONOCIDO COMO CODIGO MALIGNO O CODIGO MALICIOSO ES UN TIPO DE SOFTWARE QUE TIENE COMO OBJETIVO INFILTRARSE O DANAR UN SISTEMA INFORMATICO", NroColumns: 9}
 	//var trasposicionColumnas1 encryptors.EncryptorInterface = trasposicion.Columnas{}
 	//var textoCifrado1 = trasposicionColumnas1.Cypher(dataToCypherByColumns)
 	//fmt.Println(util.Format(textoCifrado1))
-	//
-	//dataToCypherByColumns = data.Data{EncryptedMessage: textoCifrado1, NroColumns: 9}
+	////
+	//dataToCypherByColumns = data.Data{EncryptedMessage: textoCifrado1, NroColumns: 8}
 	//var textoDescifrado = trasposicionColumnas1.Decrypt(dataToCypherByColumns)
 	//fmt.Println(util.Format(textoDescifrado))
 
@@ -145,7 +145,7 @@ func main() {
 	//var textoCifradoVigenere = poliAlfabeticosPeriodicos.Cypher(dataToCypherByPolialfabeticoPeriodico)
 	//fmt.Println(util.Format(textoCifradoVigenere))
 	//
-	//var dataToDecryptByPolialfabeticoPeriodico = data.Data{Message: textoCifradoVigenere, Clave: "CIFRA"}
+	//var dataToDecryptByPolialfabeticoPeriodico = data.Data{EncryptedMessage: textoCifradoVigenere, Clave: "CIFRA"}
 	//var textoDesencriptadoVigenere = poliAlfabeticosPeriodicos.Decrypt(dataToDecryptByPolialfabeticoPeriodico)
 	//fmt.Println(util.Format(textoDesencriptadoVigenere))
 

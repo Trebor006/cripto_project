@@ -40,7 +40,7 @@ func (r Columnas) Decrypt(data data.Data) string {
 func cypherByColumns(data data.Data) string {
 	var message = data.Message
 	var nroColumns = data.NroColumns
-	message = strings.ReplaceAll(message, " ", "")
+	message = util.LimpiarData(message)
 	if nroColumns <= 0 || nroColumns >= len(message) {
 		return "Error no se puede cifrar!"
 	}
@@ -78,12 +78,11 @@ func cypherByColumns(data data.Data) string {
 }
 
 func cypherByColumnsWithKey(data data.Data) string {
-	var message = data.Message
+	var message = util.LimpiarData(data.Message)
 	var clave = data.Clave
 
-	clave = util.RemoverDuplicados(clave)
+	clave = util.RemoverDuplicados(util.LimpiarData(clave))
 	nroColumns := len(clave)
-	message = strings.ReplaceAll(message, " ", "")
 
 	if nroColumns <= 0 || nroColumns >= len(message) {
 		return message
@@ -140,9 +139,9 @@ func ordenarCaracteres(clave string) string {
 //--------------------------------------------------------------------------------------------------------------
 
 func decrypt(data data.Data) string {
-	var message = data.EncryptedMessage
+	var message = util.LimpiarData(data.EncryptedMessage)
 	var nroColumns = data.NroColumns
-	//message = strings.ReplaceAll(message, " ", "")
+
 	if nroColumns <= 0 || nroColumns >= len(message) {
 		return "Error no se puede descifrar!"
 	}
@@ -178,11 +177,11 @@ func decrypt(data data.Data) string {
 }
 
 func decryptWithKey(data data.Data) string {
-	var message = data.EncryptedMessage
-	var clave = util.RemoverDuplicados(data.Clave)
+	var message = util.LimpiarData(data.EncryptedMessage)
+	var clave = util.RemoverDuplicados(util.LimpiarData(data.Clave))
 	var claveOrdenada = ordenarClave(clave)
 	var nroColumns = len(clave)
-	message = strings.ReplaceAll(message, " ", "")
+
 	if nroColumns <= 0 || nroColumns >= len(message) {
 		return "Error no se puede descifrar!"
 	}

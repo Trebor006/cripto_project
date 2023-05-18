@@ -9,7 +9,6 @@ type Data struct {
 	NroColumns       int    // Para Cifrado por Columnas
 	NroFilas         int    // Para Cifrado por Fila
 	NroRails         int    // Para Cifrado por Rails o ZigZag
-	PosCifradoCesar  int    // Para Cifrado por Cesar
 	NroDecimacion    int    //Transformacion Afin
 	//Desplazamiento   int    //Transformacion Afin
 

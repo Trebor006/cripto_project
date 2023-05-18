@@ -2,6 +2,7 @@ package trasposicion
 
 import (
 	"cripto_project/main/data"
+	"cripto_project/main/util"
 	"strings"
 )
 
@@ -9,14 +10,14 @@ type Grupos struct {
 }
 
 func (r Grupos) Cypher(data data.Data) string {
-	message := strings.ReplaceAll(strings.ToUpper(data.Message), " ", "")
-	return transposeCipher(message, data.Clave)
+	message := util.LimpiarData(data.Message)
+	return transposeCipher(message, util.LimpiarData(data.Clave))
 }
 
 func (r Grupos) Decrypt(data data.Data) string {
-	message := strings.ReplaceAll(strings.ToUpper(data.EncryptedMessage), " ", "")
+	message := util.LimpiarData(data.EncryptedMessage)
 
-	return inverseTransposeCipher(message, data.Clave)
+	return inverseTransposeCipher(message, util.LimpiarData(data.Clave))
 }
 func transposeCipher(message, key string) string {
 	// Obtener la longitud del grupo y ajustar el mensaje si es necesario

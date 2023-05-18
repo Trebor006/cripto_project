@@ -12,8 +12,8 @@ type PolialfabeticosPeriodicos struct {
 }
 
 func (r PolialfabeticosPeriodicos) Cypher(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
-	clave := strings.ToUpper(data.Clave)
+	message := util.LimpiarData(data.Message)
+	clave := util.LimpiarData(data.Clave)
 
 	nroFilas := 1
 	nroColumnas := len(message)
@@ -59,8 +59,8 @@ func (r PolialfabeticosPeriodicos) Cypher(data data.Data) string {
 }
 
 func (r PolialfabeticosPeriodicos) Decrypt(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
-	clave := strings.ToUpper(data.Clave)
+	message := util.LimpiarData(data.EncryptedMessage)
+	clave := util.LimpiarData(data.Clave)
 
 	nroFilas := 1
 	nroColumnas := len(message)

@@ -12,7 +12,7 @@ type HomofonoPrimerOrden struct {
 
 func (h HomofonoPrimerOrden) Cypher(data data.Data) string {
 	diccionario := data.Diccionario
-	message := strings.ReplaceAll(data.Message, " ", "")
+	message := util.LimpiarData(data.Message)
 	randomGenerator := data.RandomGenerator
 
 	textoEncriptado := ""

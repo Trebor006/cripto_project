@@ -4,22 +4,21 @@ import (
 	"cripto_project/main/data"
 	"cripto_project/main/util"
 	"fmt"
-	"strings"
 )
 
 type PuroConClave struct {
 }
 
 func (r PuroConClave) Cypher(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
-	clave := util.RemoverDuplicados(strings.ToUpper(strings.ReplaceAll(data.Clave, " ", "")))
+	message := util.LimpiarData(data.Message)
+	clave := util.RemoverDuplicados(util.LimpiarData(data.Clave))
 
-	nuevoAlfabeto := generarNuevoAlfabeto(clave, data.PosCifradoCesar)
+	nuevoAlfabeto := generarNuevoAlfabeto(clave)
 
 	textoEncriptado := ""
 	for _, char := range message {
 		pos := util.ObtenerPosicion(nuevoAlfabeto, string(char))
-		nuevaPos := pos + data.PosCifradoCesar
+		nuevaPos := pos + 3
 		if nuevaPos >= len(nuevoAlfabeto) {
 			nuevaPos = nuevaPos - len(nuevoAlfabeto)
 		}
@@ -30,7 +29,7 @@ func (r PuroConClave) Cypher(data data.Data) string {
 	return textoEncriptado
 }
 
-func generarNuevoAlfabeto(clave string, pos int) []string {
+func generarNuevoAlfabeto(clave string) []string {
 	alfabeto := util.ObtenerAlfabetoEspanol()
 	nuevoAlfabeto := []string{}
 	for _, char := range clave {
@@ -53,14 +52,14 @@ func generarNuevoAlfabeto(clave string, pos int) []string {
 }
 
 func (r PuroConClave) Decrypt(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
-	clave := util.RemoverDuplicados(strings.ToUpper(strings.ReplaceAll(data.Clave, " ", "")))
-	nuevoAlfabeto := generarNuevoAlfabeto(clave, data.PosCifradoCesar)
+	message := util.LimpiarData(data.EncryptedMessage)
+	clave := util.RemoverDuplicados(util.LimpiarData(data.Clave))
 
+	nuevoAlfabeto := generarNuevoAlfabeto(clave)
 	textoEncriptado := ""
 	for _, char := range message {
 		pos := util.ObtenerPosicion(nuevoAlfabeto, string(char))
-		nuevaPos := pos - data.PosCifradoCesar
+		nuevaPos := pos - 3
 		if nuevaPos < 0 {
 			nuevaPos = len(nuevoAlfabeto) + nuevaPos
 		}

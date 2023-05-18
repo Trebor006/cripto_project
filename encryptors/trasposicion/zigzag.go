@@ -12,7 +12,7 @@ type ZigZag struct {
 
 func (r ZigZag) Cypher(data data.Data) string {
 	nroRails := data.NroRails
-	message := strings.ReplaceAll(data.Message, " ", "")
+	message := util.LimpiarData(data.Message)
 
 	if nroRails <= 1 || nroRails >= len(message) {
 		return "No se puede cifrar!!"
@@ -63,7 +63,7 @@ func (r ZigZag) Cypher(data data.Data) string {
 }
 func (r ZigZag) Decrypt(data data.Data) string {
 	nroRails := data.NroRails
-	encriptedMessage := strings.ReplaceAll(data.EncryptedMessage, " ", "")
+	encriptedMessage := util.LimpiarData(data.EncryptedMessage)
 
 	tamanoOla := 2*nroRails - 2
 	nroOlas := util.Dividir(len(encriptedMessage), tamanoOla)

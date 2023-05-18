@@ -15,3 +15,8 @@ func RemoverDuplicados(clave string) string {
 
 	return builder.String()
 }
+
+func LimpiarData(data string) string {
+
+	return strings.ReplaceAll(strings.ToUpper(data), " ", "")
+}
