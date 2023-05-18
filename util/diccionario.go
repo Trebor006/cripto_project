@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func InicializarDiccionario(longitudDiccionario int, r *rand.Rand) map[string][]int {
+func InicializarDiccionarioPrimerOrden(longitudDiccionario int, r *rand.Rand) map[string][]int {
 	diccionario := map[string][]int{}
 
 	// Agregar elementos al slice
@@ -48,6 +48,63 @@ func InicializarDiccionario(longitudDiccionario int, r *rand.Rand) map[string][]
 	ImprimirDiccionario(diccionario)
 
 	return diccionario
+}
+
+func InicializarDiccionarioOrdenMayor(longitudDiccionario int, r *rand.Rand) map[string][]int {
+	claves := generarClaves()
+	diccionario := map[string][]int{}
+
+	numerosAsignados := map[int]bool{}
+
+	for _, valor := range claves {
+		posibilidadesPorValor := generarNumeroRandom(10, r) + 2
+		contadorPoibilidadesAsignadas := 0
+
+		diccionario[valor] = []int{}
+
+		for contadorPoibilidadesAsignadas < posibilidadesPorValor {
+
+			valorAsignado := false
+			for !valorAsignado {
+				numero := generarNumeroRandom(5*longitudDiccionario/4, r)
+
+				if !numerosAsignados[numero] {
+					diccionario[valor] = append(diccionario[valor], numero)
+					numerosAsignados[numero] = true
+					valorAsignado = true
+					contadorPoibilidadesAsignadas++
+				}
+			}
+		}
+	}
+	ImprimirDiccionario(diccionario)
+
+	return diccionario
+}
+
+func generarClaves() []string {
+	alfabeto := ObtenerAlfabetoEspanol()
+	claves := make([]string, len(alfabeto)*len(alfabeto))
+	index := 0
+
+	for _, letra1 := range alfabeto {
+		for _, letra2 := range alfabeto {
+			clave := letra1 + letra2
+			claves[index] = clave
+			index++
+		}
+	}
+
+	return claves
+}
+
+func existeNumero(arr []int, valor int) bool {
+	for _, num := range arr {
+		if num == valor {
+			return true
+		}
+	}
+	return false
 }
 
 func ImprimirDiccionario(diccionario map[string][]int) {

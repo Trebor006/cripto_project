@@ -112,7 +112,7 @@ func main() {
 	//
 	//
 	//random := util.ObtenerGeneradorRandom()
-	//diccionario := util.InicializarDiccionario(100, random)
+	//diccionario := util.InicializarDiccionarioPrimerOrden(100, random)
 	//var homofonoPrimerOrden encryptors.EncryptorInterface = homofonos.HomofonoPrimerOrden{}
 	//
 	//var dataToCypherByPrimerOrden = data.Data{Message: "HOLA MUNDO QUE TAL QUE HACIENDO", Diccionario: diccionario, RandomGenerator: random}
@@ -127,9 +127,18 @@ func main() {
 	//var dataToDecryptByPrimerOrden2 = data.Data{EncryptedMessage: encryptedMessageByPrimerOrden2, Diccionario: diccionario, RandomGenerator: random}
 	//fmt.Println(homofonoPrimerOrden.Decrypt(dataToDecryptByPrimerOrden2))
 
-	////var homofonoOrdenMayor encryptors.EncryptorInterface = homofonos.HomofonoOrdenMayor{}
-	////fmt.Println(homofonoOrdenMayor.Cypher(dataToCypherSeries))
+	//var homofonoOrdenMayor = encryptors.GetEncryptor(encryptors.ORDEN_MAYOR)
 	//
+	//random := util.ObtenerGeneradorRandom()
+	//diccionario := util.InicializarDiccionarioOrdenMayor(5000, random)
+	//var dataToCypherOrdenMayor = data.Data{Message: "DILE A LAURA QUE LA QUIERO", Diccionario: diccionario, RandomGenerator: random}
+	//textoCifradoPorOrdenMayor := homofonoOrdenMayor.Cypher(dataToCypherOrdenMayor)
+	//fmt.Println(util.Format(textoCifradoPorOrdenMayor))
+	//
+	//var dataToDecryptOrdenMayor = data.Data{EncryptedMessage: textoCifradoPorOrdenMayor, Diccionario: diccionario, RandomGenerator: random}
+	//textoDescifradoPorOrdenMayor := homofonoOrdenMayor.Decrypt(dataToDecryptOrdenMayor)
+	//fmt.Println(util.Format(textoDescifradoPorOrdenMayor))
+
 	//var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "HOLA AMIGOS", Clave: "CIFRA"}
 	////var dataToCypherByPolialfabeticoPeriodico = data.Data{Message: "eres como una mariposa vuelas y te posas", Clave: "MANA"}
 	//var poliAlfabeticosPeriodicos encryptors.EncryptorInterface = encryptors.GetEncryptor(encryptors.POLIALFABETICO_PERIODICO)
