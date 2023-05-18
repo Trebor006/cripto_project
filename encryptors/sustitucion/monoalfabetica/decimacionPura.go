@@ -3,15 +3,15 @@ package monoalfabetica
 import (
 	"cripto_project/main/data"
 	"cripto_project/main/util"
-	"strings"
 )
 
 type DecimacionPura struct {
 }
 
 func (r DecimacionPura) Cypher(data data.Data) string {
-	palabra := strings.ReplaceAll(strings.ToUpper(data.Message), " ", "")
+	palabra := util.LimpiarData(data.Message)
 	decimacion := data.NroDecimacion
+
 	alfabeto := util.ObtenerAlfabetoEspanol()
 	alfabetoCifrado := make([]rune, len(alfabeto))
 
@@ -20,7 +20,6 @@ func (r DecimacionPura) Cypher(data data.Data) string {
 	}
 
 	cifrado := ""
-
 	for _, letra := range palabra {
 		for i := 0; i < len(alfabeto); i++ {
 			if rune(alfabeto[i][0]) == letra {
@@ -30,11 +29,10 @@ func (r DecimacionPura) Cypher(data data.Data) string {
 	}
 
 	return cifrado
-
 }
 
 func (r DecimacionPura) Decrypt(data data.Data) string {
-	palabra := strings.ReplaceAll(strings.ToUpper(data.EncryptedMessage), " ", "")
+	palabra := util.LimpiarData(data.EncryptedMessage)
 	decimacion := data.NroDecimacion
 
 	alfabeto := util.ObtenerAlfabetoEspanol()

@@ -11,7 +11,7 @@ type Series struct {
 }
 
 func (r Series) Cypher(data data.Data) string {
-	message := strings.ReplaceAll(strings.ToUpper(data.Message), " ", "")
+	message := util.LimpiarData(data.Message)
 	nuevoDetalle := generateDetail(message)
 	imprimirArreglo(nuevoDetalle)
 
@@ -24,7 +24,7 @@ func (r Series) Cypher(data data.Data) string {
 }
 
 func (r Series) Decrypt(data data.Data) string {
-	message := strings.ReplaceAll(strings.ToUpper(data.EncryptedMessage), " ", "")
+	message := util.LimpiarData(data.EncryptedMessage)
 	nuevoDetalle := generateDetail(message)
 	imprimirArreglo(nuevoDetalle)
 

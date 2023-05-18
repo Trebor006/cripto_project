@@ -12,7 +12,7 @@ type HomofonoOrdenMayor struct {
 
 func (r HomofonoOrdenMayor) Cypher(data data.Data) string {
 	diccionario := data.Diccionario
-	message := strings.ReplaceAll(strings.ToUpper(data.Message), " ", "")
+	message := util.LimpiarData(data.Message)
 	randomGenerator := data.RandomGenerator
 
 	textoEncriptado := ""
@@ -33,7 +33,7 @@ func (r HomofonoOrdenMayor) Cypher(data data.Data) string {
 
 func (r HomofonoOrdenMayor) Decrypt(data data.Data) string {
 	diccionario := data.Diccionario
-	valuesToDecrypt := strings.Split(strings.Trim(data.EncryptedMessage, " "), " ")
+	valuesToDecrypt := strings.Split(strings.Trim(strings.ToUpper(data.EncryptedMessage), " "), " ")
 
 	textoClaro := ""
 	for _, b := range valuesToDecrypt {

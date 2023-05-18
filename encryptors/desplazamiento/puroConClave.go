@@ -4,15 +4,14 @@ import (
 	"cripto_project/main/data"
 	"cripto_project/main/util"
 	"fmt"
-	"strings"
 )
 
 type PuroConClave struct {
 }
 
 func (r PuroConClave) Cypher(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
-	clave := util.RemoverDuplicados(strings.ToUpper(strings.ReplaceAll(data.Clave, " ", "")))
+	message := util.LimpiarData(data.Message)
+	clave := util.RemoverDuplicados(util.LimpiarData(data.Clave))
 
 	nuevoAlfabeto := generarNuevoAlfabeto(clave)
 
@@ -53,10 +52,10 @@ func generarNuevoAlfabeto(clave string) []string {
 }
 
 func (r PuroConClave) Decrypt(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
-	clave := util.RemoverDuplicados(strings.ToUpper(strings.ReplaceAll(data.Clave, " ", "")))
-	nuevoAlfabeto := generarNuevoAlfabeto(clave)
+	message := util.LimpiarData(data.EncryptedMessage)
+	clave := util.RemoverDuplicados(util.LimpiarData(data.Clave))
 
+	nuevoAlfabeto := generarNuevoAlfabeto(clave)
 	textoEncriptado := ""
 	for _, char := range message {
 		pos := util.ObtenerPosicion(nuevoAlfabeto, string(char))

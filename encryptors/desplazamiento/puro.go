@@ -3,14 +3,14 @@ package desplazamiento
 import (
 	"cripto_project/main/data"
 	util "cripto_project/main/util"
-	"strings"
 )
 
 type Puro struct {
 }
 
 func (r Puro) Cypher(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.Message, " ", ""))
+	message := util.LimpiarData(data.Message)
+
 	alfabeto := util.ObtenerAlfabetoEspanol()
 
 	textoEncriptado := ""
@@ -28,9 +28,9 @@ func (r Puro) Cypher(data data.Data) string {
 }
 
 func (r Puro) Decrypt(data data.Data) string {
-	message := strings.ToUpper(strings.ReplaceAll(data.EncryptedMessage, " ", ""))
-	alfabeto := util.ObtenerAlfabetoEspanol()
+	message := util.LimpiarData(data.EncryptedMessage)
 
+	alfabeto := util.ObtenerAlfabetoEspanol()
 	textoEncriptado := ""
 	for _, char := range message {
 		pos := util.ObtenerPosicion(alfabeto, string(char))

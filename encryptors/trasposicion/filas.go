@@ -11,9 +11,8 @@ type Filas struct {
 }
 
 func (r Filas) Cypher(data data.Data) string {
-	var message = data.Message
+	var message = util.LimpiarData(data.Message)
 	var nroFilas = data.NroFilas
-	message = strings.ReplaceAll(strings.ToUpper(message), " ", "")
 
 	if nroFilas <= 0 || nroFilas >= len(message) {
 		return "Error no se puede cifrar!"
@@ -51,7 +50,7 @@ func (r Filas) Cypher(data data.Data) string {
 }
 
 func (r Filas) Decrypt(data data.Data) string {
-	message := strings.ReplaceAll(strings.ToUpper(data.EncryptedMessage), " ", "")
+	message := util.LimpiarData(data.EncryptedMessage)
 
 	var nroFilas = data.NroFilas
 	if nroFilas <= 0 || nroFilas >= len(message) {
