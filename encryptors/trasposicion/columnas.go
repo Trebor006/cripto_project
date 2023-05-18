@@ -142,7 +142,7 @@ func ordenarCaracteres(clave string) string {
 func decrypt(data data.Data) string {
 	var message = data.EncryptedMessage
 	var nroColumns = data.NroColumns
-	//message = strings.ReplaceAll(message, " ", "")
+	message = strings.ReplaceAll(message, " ", "")
 	if nroColumns <= 0 || nroColumns >= len(message) {
 		return "Error no se puede descifrar!"
 	}

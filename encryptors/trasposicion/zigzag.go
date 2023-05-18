@@ -61,6 +61,7 @@ func (r ZigZag) Cypher(data data.Data) string {
 
 	return textoCifrado.String()
 }
+
 func (r ZigZag) Decrypt(data data.Data) string {
 	nroRails := data.NroRails
 	encriptedMessage := strings.ReplaceAll(data.EncryptedMessage, " ", "")

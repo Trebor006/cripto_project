@@ -139,4 +139,5 @@ func main() {
 	//var textoDesencriptadoVigenere = poliAlfabeticosPeriodicos.Decrypt(dataToDecryptByPolialfabeticoPeriodico)
 	//fmt.Println(util.Format(textoDesencriptadoVigenere))
 
+	GenerarFormulario()
 }
