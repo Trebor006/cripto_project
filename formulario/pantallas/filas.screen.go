@@ -29,19 +29,35 @@ func FilasGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		nroFil, _ := strconv.Atoi(nroFilas.Text)
-		dataACifrar := data.Data{Message: textoInicial.Text, NroFilas: nroFil}
-		textoCifrado := encryptor.Cypher(dataACifrar)
-		textoResultante.SetText(util.Format(textoCifrado))
+		nroFil, e := strconv.Atoi(nroFilas.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Filas", w)
+		} else if nroFil <= 2 {
+			widgets.MostrarError("El numero de Filas debe ser de al menos 3", w)
+		} else {
+			dataACifrar := data.Data{Message: textoInicial.Text, NroFilas: nroFil}
+			textoCifrado := encryptor.Cypher(dataACifrar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
 
-		nroFil, _ := strconv.Atoi(nroFilas.Text)
-		dataACifrar := data.Data{EncryptedMessage: textoInicial.Text, NroFilas: nroFil}
-		textoDescifrado := encryptor.Decrypt(dataACifrar)
-		textoResultante.SetText(util.Format(textoDescifrado))
+		nroFil, e := strconv.Atoi(nroFilas.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Filas", w)
+		} else if nroFil <= 2 {
+			widgets.MostrarError("El numero de Filas debe ser de al menos 3", w)
+		} else {
+			dataACifrar := data.Data{EncryptedMessage: textoInicial.Text, NroFilas: nroFil}
+			textoDescifrado := encryptor.Decrypt(dataACifrar)
+			textoResultante.SetText(util.Format(textoDescifrado))
+		}
 	})
 
 	//buttonsLayout := widget.FormItem{

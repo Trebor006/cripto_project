@@ -25,19 +25,26 @@ func PuroGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		dataAEncriptar := data.Data{Message: textoInicial.Text}
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else {
+			dataAEncriptar := data.Data{Message: textoInicial.Text}
 
-		textoCifrado := metodoCifrado.Cypher(dataAEncriptar)
-		textoResultante.SetText(util.Format(textoCifrado))
+			textoCifrado := metodoCifrado.Cypher(dataAEncriptar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else {
+			dataEncriptada := data.Data{EncryptedMessage: textoInicial.Text}
 
-		dataEncriptada := data.Data{EncryptedMessage: textoInicial.Text}
-
-		textoClaro := metodoCifrado.Decrypt(dataEncriptada)
-		textoResultante.SetText(util.Format(textoClaro))
+			textoClaro := metodoCifrado.Decrypt(dataEncriptada)
+			textoResultante.SetText(util.Format(textoClaro))
+		}
 	})
 
 	form := &widget.Form{

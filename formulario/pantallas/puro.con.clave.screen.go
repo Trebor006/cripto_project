@@ -27,19 +27,30 @@ func PuroConClaveGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if !validarDatosIniciales(clave.Text) {
+			widgets.MostrarError("Revise los datos de la Clave", w)
+		} else {
+			dataAEncriptar := data.Data{Message: textoInicial.Text, Clave: clave.Text}
 
-		dataAEncriptar := data.Data{Message: textoInicial.Text, Clave: clave.Text}
-
-		textoCifrado := metodoCifrado.Cypher(dataAEncriptar)
-		textoResultante.SetText(util.Format(textoCifrado))
+			textoCifrado := metodoCifrado.Cypher(dataAEncriptar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
-		dataADesencriptar := data.Data{EncryptedMessage: textoInicial.Text, Clave: clave.Text}
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if !validarDatosIniciales(clave.Text) {
+			widgets.MostrarError("Revise los datos de la Clave", w)
+		} else {
+			dataADesencriptar := data.Data{EncryptedMessage: textoInicial.Text, Clave: clave.Text}
 
-		textoClaro := metodoCifrado.Decrypt(dataADesencriptar)
-		textoResultante.SetText(util.Format(textoClaro))
+			textoClaro := metodoCifrado.Decrypt(dataADesencriptar)
+			textoResultante.SetText(util.Format(textoClaro))
+		}
 	})
 
 	form := &widget.Form{

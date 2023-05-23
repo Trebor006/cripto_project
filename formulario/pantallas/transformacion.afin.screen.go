@@ -32,22 +32,49 @@ func TransformacionAfinGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		nroDecimacion, _ := strconv.Atoi(decimacion.Text)
-		nroDesplazamiento, _ := strconv.Atoi(desplazamiento.Text)
-		dataTransformacionAfin := data.Data{Message: textoInicial.Text, NroDecimacion: nroDecimacion, Desplazamiento: nroDesplazamiento}
+		nroDecimacion, e := strconv.Atoi(decimacion.Text)
+		nroDesplazamiento, e1 := strconv.Atoi(desplazamiento.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Decimacion", w)
+		} else if nroDecimacion <= 1 {
+			widgets.MostrarError("El numero de Decimacion debe ser de al menos 2", w)
+		} else if e1 != nil {
+			widgets.MostrarError("Debe asignar un numero de Desplazamiento", w)
+		} else if nroDesplazamiento <= 1 {
+			widgets.MostrarError("El numero de Desplazamiento debe ser de al menos 2", w)
+		} else {
 
-		textocifradoportransformacionafin := transformacionAfin.Cypher(dataTransformacionAfin)
-		textoResultante.SetText(util.Format(textocifradoportransformacionafin))
+			dataTransformacionAfin := data.Data{Message: textoInicial.Text, NroDecimacion: nroDecimacion, Desplazamiento: nroDesplazamiento}
+
+			textocifradoportransformacionafin := transformacionAfin.Cypher(dataTransformacionAfin)
+			textoResultante.SetText(util.Format(textocifradoportransformacionafin))
+		}
+
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
-		nroDecimacion, _ := strconv.Atoi(decimacion.Text)
-		nroDesplazamiento, _ := strconv.Atoi(desplazamiento.Text)
-		dataDescifradoTransformacionAfin := data.Data{EncryptedMessage: textoInicial.Text, NroDecimacion: nroDecimacion, Desplazamiento: nroDesplazamiento}
+		nroDecimacion, e := strconv.Atoi(decimacion.Text)
+		nroDesplazamiento, e1 := strconv.Atoi(desplazamiento.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Decimacion", w)
+		} else if nroDecimacion <= 1 {
+			widgets.MostrarError("El numero de Decimacion debe ser de al menos 2", w)
+		} else if e1 != nil {
+			widgets.MostrarError("Debe asignar un numero de Desplazamiento", w)
+		} else if nroDesplazamiento <= 1 {
+			widgets.MostrarError("El numero de Desplazamiento debe ser de al menos 2", w)
+		} else {
+			dataDescifradoTransformacionAfin := data.Data{EncryptedMessage: textoInicial.Text, NroDecimacion: nroDecimacion, Desplazamiento: nroDesplazamiento}
 
-		textoDescrifrado := transformacionAfin.Decrypt(dataDescifradoTransformacionAfin)
-		textoResultante.SetText(util.Format(textoDescrifrado))
+			textoDescrifrado := transformacionAfin.Decrypt(dataDescifradoTransformacionAfin)
+			textoResultante.SetText(util.Format(textoDescrifrado))
+		}
+
 	})
 
 	form := &widget.Form{

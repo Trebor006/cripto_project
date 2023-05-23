@@ -28,22 +28,38 @@ func ColumnasGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
+		nroColumns, e := strconv.Atoi(nroColumnas.Text)
 
-		nroColumns, _ := strconv.Atoi(nroColumnas.Text)
-		dataACifrar := data.Data{Message: textoInicial.Text, NroColumns: nroColumns}
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de columnas", w)
+		} else if nroColumns <= 2 {
+			widgets.MostrarError("Debe tener al menos una cantidad de columnas de 3", w)
+		} else {
+			dataACifrar := data.Data{Message: textoInicial.Text, NroColumns: nroColumns}
 
-		textoCifrado := encryptor.Cypher(dataACifrar)
-		textoResultante.SetText(util.Format(textoCifrado))
+			textoCifrado := encryptor.Cypher(dataACifrar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
 
-		nroColumns, _ := strconv.Atoi(nroColumnas.Text)
-		dataADescifrar := data.Data{EncryptedMessage: textoInicial.Text, NroColumns: nroColumns}
+		nroColumns, e := strconv.Atoi(nroColumnas.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de columnas", w)
+		} else if nroColumns <= 2 {
+			widgets.MostrarError("Debe tener al menos una cantidad de columnas de 3", w)
+		} else {
+			dataADescifrar := data.Data{EncryptedMessage: textoInicial.Text, NroColumns: nroColumns}
 
-		textoCifrado := encryptor.Decrypt(dataADescifrar)
-		textoResultante.SetText(util.Format(textoCifrado))
+			textoCifrado := encryptor.Decrypt(dataADescifrar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	//buttonsLayout := widget.FormItem{
@@ -73,6 +89,10 @@ func ColumnasGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 		toolTips,
 		form,
 	)
+}
+
+func validarDatosIniciales(dato string) bool {
+	return len(dato) != 0
 }
 
 //func columnasScreen(w fyne.Window) fyne.CanvasObject {

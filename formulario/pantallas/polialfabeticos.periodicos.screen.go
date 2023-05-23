@@ -28,19 +28,30 @@ func PolialfabeticosPeriodicosGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		dataCifrado := data.Data{Message: textoInicial.Text, Clave: clave.Text}
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if !validarDatosIniciales(clave.Text) {
+			widgets.MostrarError("Revise los datos de la Clave", w)
+		} else {
+			dataCifrado := data.Data{Message: textoInicial.Text, Clave: clave.Text}
 
-		textoCifrado := encryptor.Cypher(dataCifrado)
-		textoResultante.SetText(util.Format(textoCifrado))
+			textoCifrado := encryptor.Cypher(dataCifrado)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if !validarDatosIniciales(clave.Text) {
+			widgets.MostrarError("Revise los datos de la Clave", w)
+		} else {
+			dataDescifrar := data.Data{EncryptedMessage: textoInicial.Text, Clave: clave.Text}
 
-		dataDescifrar := data.Data{EncryptedMessage: textoInicial.Text, Clave: clave.Text}
-
-		textoDescrifrado := encryptor.Decrypt(dataDescifrar)
-		textoResultante.SetText(util.Format(textoDescrifrado))
+			textoDescrifrado := encryptor.Decrypt(dataDescifrar)
+			textoResultante.SetText(util.Format(textoDescrifrado))
+		}
 	})
 
 	form := &widget.Form{

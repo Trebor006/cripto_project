@@ -26,17 +26,25 @@ func HomofonoPrimerOrdenGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
-		dataToCypherByPrimerOrden := data.Data{Message: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
-		encryptedMessageByPrimerOrden := homofonoPrimerOrden.Cypher(dataToCypherByPrimerOrden)
-		textoResultante.SetText(encryptedMessageByPrimerOrden)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else {
+			dataToCypherByPrimerOrden := data.Data{Message: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
+			encryptedMessageByPrimerOrden := homofonoPrimerOrden.Cypher(dataToCypherByPrimerOrden)
+			textoResultante.SetText(encryptedMessageByPrimerOrden)
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
-		dataToDecryptByPrimerOrden := data.Data{EncryptedMessage: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
-		textoDesencriptado := homofonoPrimerOrden.Decrypt(dataToDecryptByPrimerOrden)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else {
+			dataToDecryptByPrimerOrden := data.Data{EncryptedMessage: textoInicial.Text, Diccionario: diccionario, RandomGenerator: random}
+			textoDesencriptado := homofonoPrimerOrden.Decrypt(dataToDecryptByPrimerOrden)
 
-		textoResultante.SetText(util.Format(textoDesencriptado))
+			textoResultante.SetText(util.Format(textoDesencriptado))
+		}
 	})
 
 	form := &widget.Form{

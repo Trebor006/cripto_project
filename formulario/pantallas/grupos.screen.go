@@ -8,6 +8,7 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
+	"strconv"
 )
 
 func GruposGenerarPantalla(w fyne.Window) fyne.CanvasObject {
@@ -18,7 +19,7 @@ func GruposGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	textoInicial.SetPlaceHolder("Texto a Encriptar/Desencriptar")
 	textoInicial.SetMinRowsVisible(5)
 
-	clave := widget.NewEntry()
+	clave := widgets.NewNumEntry()
 	clave.SetPlaceHolder("Clave")
 
 	textoResultante := widget.NewMultiLineEntry()
@@ -28,18 +29,34 @@ func GruposGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		dataAEncriptar := data.Data{Message: textoInicial.Text, Clave: clave.Text}
+		_, e := strconv.Atoi(clave.Text)
 
-		textoCifrado := metodoCifrado.Cypher(dataAEncriptar)
-		textoResultante.SetText(util.Format(textoCifrado))
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if !validarDatosIniciales(clave.Text) {
+			widgets.MostrarError("Revise los datos de la Clave", w)
+		} else if e != nil {
+			widgets.MostrarError("Revise los datos de la Clave, Debe ser numerica", w)
+		} else {
+			dataAEncriptar := data.Data{Message: textoInicial.Text, Clave: clave.Text}
+
+			textoCifrado := metodoCifrado.Cypher(dataAEncriptar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
-		dataADesencriptar := data.Data{EncryptedMessage: textoInicial.Text, Clave: clave.Text}
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if !validarDatosIniciales(clave.Text) {
+			widgets.MostrarError("Revise los datos de la Clave", w)
+		} else {
+			dataADesencriptar := data.Data{EncryptedMessage: textoInicial.Text, Clave: clave.Text}
 
-		textoClaro := metodoCifrado.Decrypt(dataADesencriptar)
-		textoResultante.SetText(util.Format(textoClaro))
+			textoClaro := metodoCifrado.Decrypt(dataADesencriptar)
+			textoResultante.SetText(util.Format(textoClaro))
+		}
 	})
 
 	form := &widget.Form{

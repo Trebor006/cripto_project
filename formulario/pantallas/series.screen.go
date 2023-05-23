@@ -25,19 +25,26 @@ func SeriesGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		dataACifrar := data.Data{Message: textoInicial.Text}
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else {
+			dataACifrar := data.Data{Message: textoInicial.Text}
 
-		textoCifrado := encryptor.Cypher(dataACifrar)
-		textoResultante.SetText(util.Format(textoCifrado))
+			textoCifrado := encryptor.Cypher(dataACifrar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else {
+			dataADescifrar := data.Data{EncryptedMessage: textoInicial.Text}
 
-		dataADescifrar := data.Data{EncryptedMessage: textoInicial.Text}
-
-		textoDescifrado := encryptor.Decrypt(dataADescifrar)
-		textoResultante.SetText(util.Format(textoDescifrado))
+			textoDescifrado := encryptor.Decrypt(dataADescifrar)
+			textoResultante.SetText(util.Format(textoDescifrado))
+		}
 	})
 
 	//buttonsLayout := widget.FormItem{

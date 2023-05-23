@@ -29,20 +29,36 @@ func DecimacionPuraGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		decimacion, _ := strconv.Atoi(nroDecimacion.Text)
-		dataToCypherDecimacionPura := data.Data{Message: textoInicial.Text, NroDecimacion: decimacion}
+		decimacion, e := strconv.Atoi(nroDecimacion.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Decimacion", w)
+		} else if decimacion <= 1 {
+			widgets.MostrarError("El numero de decimacion debe ser de al menos 2", w)
+		} else {
+			dataToCypherDecimacionPura := data.Data{Message: textoInicial.Text, NroDecimacion: decimacion}
 
-		textoCifradoPorDecimacionPura := metodoCifrado.Cypher(dataToCypherDecimacionPura)
-		textoResultante.SetText(util.Format(textoCifradoPorDecimacionPura))
+			textoCifradoPorDecimacionPura := metodoCifrado.Cypher(dataToCypherDecimacionPura)
+			textoResultante.SetText(util.Format(textoCifradoPorDecimacionPura))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
 
-		decimacion, _ := strconv.Atoi(nroDecimacion.Text)
-		dataToDecryptDecimacionPura := data.Data{EncryptedMessage: textoInicial.Text, NroDecimacion: decimacion}
-		textoDesencriptadoPorDecimacionPura := metodoCifrado.Decrypt(dataToDecryptDecimacionPura)
-		textoResultante.SetText(util.Format(textoDesencriptadoPorDecimacionPura))
+		decimacion, e := strconv.Atoi(nroDecimacion.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Decimacion", w)
+		} else if decimacion <= 1 {
+			widgets.MostrarError("El numero de decimacion debe ser de al menos 2", w)
+		} else {
+			dataToDecryptDecimacionPura := data.Data{EncryptedMessage: textoInicial.Text, NroDecimacion: decimacion}
+			textoDesencriptadoPorDecimacionPura := metodoCifrado.Decrypt(dataToDecryptDecimacionPura)
+			textoResultante.SetText(util.Format(textoDesencriptadoPorDecimacionPura))
+		}
 	})
 
 	form := &widget.Form{

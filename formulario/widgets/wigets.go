@@ -1,10 +1,12 @@
 package widgets
 
 import (
+	"errors"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/data/validation"
+	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"image/color"
@@ -53,6 +55,11 @@ func LimpiarConsola() {
 	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
 	cmd.Run()
+}
+
+func MostrarError(errorMessage string, win fyne.Window) {
+	err := errors.New(errorMessage)
+	dialog.ShowError(err, win)
 }
 
 //entry := widget.NewEntry()

@@ -29,21 +29,37 @@ func ZigZagGenerarPantalla(w fyne.Window) fyne.CanvasObject {
 	botonEncriptar := widget.NewButton("Encriptar", func() {
 		widgets.LimpiarConsola()
 
-		nRails, _ := strconv.Atoi(nroRails.Text)
-		dataACifrar := data.Data{Message: textoInicial.Text, NroRails: nRails}
+		nRails, e := strconv.Atoi(nroRails.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Rails", w)
+		} else if nRails <= 2 {
+			widgets.MostrarError("El numero de Rails debe ser de al menos 3", w)
+		} else {
+			dataACifrar := data.Data{Message: textoInicial.Text, NroRails: nRails}
 
-		textoCifrado := encryptor.Cypher(dataACifrar)
-		textoResultante.SetText(util.Format(textoCifrado))
+			textoCifrado := encryptor.Cypher(dataACifrar)
+			textoResultante.SetText(util.Format(textoCifrado))
+		}
 	})
 
 	botonDesencriptar := widget.NewButton("Desencriptar", func() {
 		widgets.LimpiarConsola()
 
-		nRails, _ := strconv.Atoi(nroRails.Text)
-		dataADescifrar := data.Data{EncryptedMessage: textoInicial.Text, NroRails: nRails}
+		nRails, e := strconv.Atoi(nroRails.Text)
+		if !validarDatosIniciales(textoInicial.Text) {
+			widgets.MostrarError("Revise los datos de la cadena a procesar", w)
+		} else if e != nil {
+			widgets.MostrarError("Debe asignar un numero de Rails", w)
+		} else if nRails <= 2 {
+			widgets.MostrarError("El numero de Rails debe ser de al menos 3", w)
+		} else {
+			dataADescifrar := data.Data{EncryptedMessage: textoInicial.Text, NroRails: nRails}
 
-		textoDescifrado := encryptor.Decrypt(dataADescifrar)
-		textoResultante.SetText(util.Format(textoDescifrado))
+			textoDescifrado := encryptor.Decrypt(dataADescifrar)
+			textoResultante.SetText(util.Format(textoDescifrado))
+		}
 	})
 
 	//buttonsLayout := widget.FormItem{
